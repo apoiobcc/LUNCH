@@ -1,1 +1,1 @@
-# escalonamento-disciplinas
+# Class scheduler
