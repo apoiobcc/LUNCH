@@ -7,20 +7,21 @@ teacher(profAAA).
 teacher(profBBB).
 
 %*
-course/3(course id, teacher name, number of weekly courses)
-------------------------------------------------------------
-Identifies a course by name and number of weekly classes.
+course/4(course id, group id, teacher name, number of weekly courses)
+---------------------------------------------------------------------
+Identifies a course by a discipline id, a group id, a number of weekly classes
+and the responsible teacher.
 *%
-course(macAAA, profAAA, 2).
-course(macBBB, profBBB, 3).
-course(macCCC, profAAA, 2).
+course(macAAA, 1, profAAA, 2).
+course(macBBB, 1, profBBB, 3).
+course(macCCC, 1, profAAA, 2).
 
 %*
 course/1(course id)
 -------------------
-Alias to course/3.
+Alias to course/4.
 *%
-course(X) :- course(X, _, _).
+course(X) :- course(X, _, _, _).
 
 %*
 postgrad/1(course id)
@@ -52,7 +53,7 @@ NOTE: we maybe could expand this to contemplate all cases were two courses have
 the same course id.
 NOTE: discuss about two teachers lecturing the same subject
 *%
-:- course(C, _,  H1), course(C, _, H2), H1 != H2.
+:- course(C, _, _,  H1), course(C, _, _, H2), H1 != H2.
 
 %*
 available/2(teacher name, period)
@@ -82,19 +83,29 @@ available(profBBB, 212).
 available(profBBB, 412).
 
 %*
-class/3(course id, teacher name, day of week, period)
------------------------------------------------------
+class/4(course id, group id, teacher, period)
+---------------------------------------------
 Schedule N classes of a given course, considering the teachers available
 periods. A class represents a cell in the schedule.
 *%
-{ class(C, T, P) : available(T, P) } == N :- course(C, T, N).
+{ class(C, G, T, P) : available(T, P) } == N :- course(C, G, T, N).
 
 %*
-conflict/3(course id 1, course id 2, period)
---------------------------------------------
-Indicates a conflict between 2 classes of diferent courses.
+conflict/5(first course id, first course group, second course id, second course grouyp, period)
+-----------------------------------------------------------------------------------------------
+Indicates a conflict between 2 classes of diferent courses or groups.
 *%
-conflict(C1, C2, P) :- class(C1, _, P), class(C2, _, P), C1 != C2.
+% class conflict
+conflict(C1, G1, C2, G2, P) :-
+    class(C1, G1, _, P),
+    class(C2, G2, _, P),
+    C1 != C2.
+
+% group conflict
+conflict(C1, G1, C2, G2, P) :-
+    class(C1, G1, _, P),
+    class(C2, G2, _, P),
+    C1 == C2, G1 != G2.
 
 %*
 Restriction #(restriction identifier)
@@ -102,15 +113,14 @@ Restriction #(restriction identifier)
 No classes can be scheduled on friday in the afternoon.
 TODO: considerar que é só a graduação
 *%
-:- class(_, _, 521).
-:- class(_, _, 522).
-
+:- class(_, _, _, 521).
+:- class(_, _, _, 522).
 
 %*
 Restriction #(restriction identifier)
 -------------------------------------
 Two classes lectured by the same teacher cannot conflict.
 *%
-:- course(C1, T, _), course(C2, T, _), conflict(C1, C2, _).
+:- course(C1, G1, T, _), course(C2, G2, T, _), conflict(C1, G1, C2, G2, _).
 
-#show class/3.
+#show class/4.
