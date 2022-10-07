@@ -13,8 +13,8 @@ Identifies a course by a discipline id, a group id, a number of weekly classes
 and the responsible teacher.
 *%
 course(macAAA, 1, profAAA, 2).
-course(macBBB, 1, profBBB, 3).
-course(macCCC, 1, profAAA, 2).
+course(macAAA, 2, profAAA, 2).
+course(macBBB, 1, profBBB, 2).
 
 %*
 course/1(course id)
@@ -79,8 +79,7 @@ available(profAAA, 121).
 available(profAAA, 122).
 
 available(profBBB, 111).
-available(profBBB, 212).
-available(profBBB, 412).
+available(profBBB, 112).
 
 %*
 class/4(course id, group id, teacher, period)
