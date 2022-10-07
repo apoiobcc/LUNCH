@@ -1,0 +1,15 @@
+clingo version 5.6.0 (c0a2cf99)
+Reading from stdin
+Solving...
+Answer: 1
+class(macBBB,45,profBBB,411) class(macAAA,45,profAAA,421) class(macBBB,45,profBBB,421) class(macAAA,45,profAAA,511) class(macBBB,45,profBBB,511)
+Answer: 2
+class(macAAA,45,profAAA,411) class(macBBB,45,profBBB,411) class(macBBB,45,profBBB,421) class(macAAA,45,profAAA,511) class(macBBB,45,profBBB,511)
+Answer: 3
+class(macAAA,45,profAAA,411) class(macBBB,45,profBBB,411) class(macAAA,45,profAAA,421) class(macBBB,45,profBBB,421) class(macBBB,45,profBBB,511)
+SATISFIABLE
+
+Models       : 3
+Calls        : 1
+Time         : 0.031s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.000s
