@@ -16,7 +16,7 @@ course/3(course id, teacher name, number of weekly courses)
 ------------------------------------------------------------
 Identifies a course by name and number of weekly classes.
 *%
-course(macAAA, profAAA, n).
+course(macAAA, 1, profAAA, n).
 
 
 %*
@@ -41,4 +41,4 @@ available(profAAA, 111).
 available(profAAA, 211).
 available(profAAA, 311).
 
-:- {class(macAAA,profAAA,_): } == n.
+:- {class(macAAA, 1, profAAA,_): } == n.

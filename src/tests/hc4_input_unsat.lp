@@ -11,7 +11,7 @@ course/3(course id, teacher name, number of weekly courses)
 ------------------------------------------------------------
 Identifies a course by name and number of weekly classes.
 *%
-course(macAAA, profAAA, 2).
+course(macAAA, 1, profAAA, 2).
 
 %*
 available/2(teacher name, period)
@@ -31,7 +31,7 @@ available(profAAA, 121): profAAA is available on monday's first period of the
 available(profAAA, 212): profAAA is available on tuesday's second period of the
                          morning.
 *%
-avaliable(profAAA,112).
+available(profAAA,112).
 
 
-class(macAAA,profAAA,111).
+class(macAAA,1,profAAA,111).
