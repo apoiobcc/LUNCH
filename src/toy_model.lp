@@ -39,11 +39,11 @@ curriculum(macCCC, systems).
 curriculum(macCCC, ai).
 
 %*
-obligatory/1(course id)
------------------------
+obligatory/1(course id, ideal period)
+-------------------------------------
 Identifies a course as obligatory.
 *%
-obligatory(macAAA).
+obligatory(macAAA, 1).
 
 %*
 Restriction #(restriction identifier)
