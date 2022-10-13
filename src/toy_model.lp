@@ -7,14 +7,36 @@ teacher(profAAA).
 teacher(profBBB).
 
 %*
-course/4(course id, group id, teacher name, number of weekly courses)
----------------------------------------------------------------------
-Identifies a course by a discipline id, a group id, a number of weekly classes
-and the responsible teacher.
+num_classes/2(class id, number of weelky classes)
+-------------------------------------------------
+Assign a number of weekly classes for a given class.
 *%
-course(macAAA, 1, profAAA, 2).
-course(macAAA, 2, profAAA, 2).
-course(macBBB, 1, profBBB, 2).
+num_classes(macAAA, 2).
+num_classes(macBBB, 2).
+
+%*
+Restriction #(restriction identifier)
+-------------------------------------
+A class cannot be defined with two different number of weekly classes.
+*%
+:- num_classes(C, H1), num_classes(C, H2), H1 != H2.
+
+%*
+course/3(course id, group id, teacher id)
+-----------------------------------------
+Identifies a course offering by a discipline id and a group id.
+*%
+course(macAAA, 1, profAAA).
+course(macAAA, 2, profAAA).
+course(macBBB, 1, profBBB).
+
+%*
+course/4(course id, group id, teacher id, number of weekly classes)
+-------------------------------------------------------------------
+Identifies a course offering by a discipline id, a group id, a number of weekly
+classes and the responsible teacher.
+*%
+course(C, G, T, N) :- course(C, G, T), num_classes(C, N).
 
 %*
 course/1(course id)
@@ -39,21 +61,11 @@ curriculum(macCCC, systems).
 curriculum(macCCC, ai).
 
 %*
-obligatory/1(course id, ideal period)
+obligatory/2(course id, ideal period)
 -------------------------------------
 Identifies a course as obligatory.
 *%
 obligatory(macAAA, 1).
-
-%*
-Restriction #(restriction identifier)
--------------------------------------
-A class cannot be defined with two different number of weekly classes.
-NOTE: we maybe could expand this to contemplate all cases were two courses have
-the same course id.
-NOTE: discuss about two teachers lecturing the same subject
-*%
-:- course(C, _, _,  H1), course(C, _, _, H2), H1 != H2.
 
 %*
 available/2(teacher name, period)
