@@ -1,0 +1,1 @@
+available(profAAA,211) available(profAAA,212) course(macAAA,1,profAAA,2) num_classes(macAAA,2) course(macAAA,1,profAAA) joint(macAAA) teacher(profAAA) class(macAAA,1,profAAA,211) class(macAAA,1,profAAA,212)
