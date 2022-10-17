@@ -85,6 +85,14 @@ Example:
 obligatory(macAAA, 1).
 ```
 
+####  **double/1(course id)**: 
+
+Identifies that the course's classes should be consecutives.
+
+Example:
+```
+double(macAAA).
+```
 
 ### Output
 ####  **class/4(course id, group id, teacher, period)**: 
