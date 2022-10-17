@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  dev:
+    build: .
+    volumes:
+      - .:/class-scheduler
+    working_dir: /class-scheduler/src
+    command: bash
