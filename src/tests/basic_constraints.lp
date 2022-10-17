@@ -5,8 +5,16 @@ Alias to course/4.
 *%
 course(X) :- course(X, _, _, _).
 
+
 %*
-Restriction #(restriction identifier)
+course/4(course id, group id, teacher id, number of weekly classes)
+-------------------------------------------------------------------
+Identifies a course offering by its discipline id, a group id,
+a number of weekly classes and the responsible teacher.
+*%
+course(C, G, T, N) :- course(C, G, T), num_classes(C, N).
+
+%*
 -------------------------------------
 A class cannot be defined with two different number of weekly classes.
 NOTE: we maybe could expand this to contemplate all cases were two courses have
@@ -39,3 +47,5 @@ conflict(C1, G1, C2, G2, P) :-
     class(C1, G1, _, P),
     class(C2, G2, _, P),
     C1 == C2, G1 != G2.
+
+

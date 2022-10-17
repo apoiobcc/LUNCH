@@ -15,9 +15,9 @@ num_classes/2(class_id, number_of_weelky classes):
 num_classes(macAAA, 2).
 
 %*
-joint/1 (class_id):
+double/1 (class_id):
 *%
-joint(macAAA).
+double(macAAA).
 
 %*
 course/3(course id, group id, teacher name)

@@ -6,7 +6,6 @@ Defines a specific number of classes per week
 %*
 teacher/1(teacher name)
 -----------------------
-Identifies a teacher by name.
 *%
 teacher(profAAA).
 
@@ -14,7 +13,6 @@ teacher(profAAA).
 %*
 course/3(course id, teacher name, number of weekly courses)
 ------------------------------------------------------------
-Identifies a course by name and number of weekly classes.
 *%
 course(macAAA, 1, profAAA, n).
 
@@ -22,8 +20,6 @@ course(macAAA, 1, profAAA, n).
 %*
 available/2(teacher name, period)
 ---------------------------------
-Indicates a teacher's available lecturing periods.vailable on tuesday's second period of the
-                         morning.
 *%
 available(profAAA, 111).
 available(profAAA, 211).

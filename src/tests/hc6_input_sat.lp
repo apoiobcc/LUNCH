@@ -16,8 +16,8 @@ available(profBBB, 211).
 %*
 obligatory/2(course id, ideal period):
 *%
-obrigatory(macAAA, 1).
-obrigatory(macBBB, 1).
+obligatory(macAAA, 1).
+obligatory(macBBB, 1).
 
 %*
 num_classes/2(class_id, number_of_weelky classes):

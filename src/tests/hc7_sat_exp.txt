@@ -1,0 +1,1 @@
+course(macAAA,1,profAAA,1) course(macAAA) num_classes(macAAA,1) course(macAAA,1,profAAA) available(profAAA,111) teacher(profAAA) class(macAAA,1,profAAA,111)
