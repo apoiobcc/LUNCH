@@ -54,15 +54,17 @@ def compare_answers(clingo,expected):
 
 def parse_expected_input(raw):
     '''
-    Separate each answer (from expected output) and returns a list with all classes scheduled
-    If no answer is found, returns False
+    Separate each answer (from expected output) and return a list with all classes scheduled
+    If no answer is found, return False
     '''
     parsed = raw.split("\n\n")
     if (not parsed): return False
 
     answers_list = list()
     for p in parsed:
-    	answer = p.split(" ")
+    	answer = p.replace("\n","").split(" ")
+    	if answer == [""]:
+    		continue
     	answers_list.append(answer)
     return answers_list
 
