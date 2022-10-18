@@ -4,15 +4,23 @@
 
 hc_quantity=8
 
+ABS_PATH=$(dirname "$0")"/"
+
+sat_answers_comparator_path=$ABS_PATH"sat-answers-comparator.py"
+
 for number in $(seq 1 $hc_quantity)
 do
 
-	hc_file="hc$number.lp"
+	# Files paths used in the execution
 
-	input_sat_file="hc$number\_input_sat.lp"
-	input_unsat_file="hc$number\_input_unsat.lp"
+	hc_file=$ABS_PATH"hc"$number".lp"
+
+	basic_hc_file=$ABS_PATH"basic_constraints.lp"
+
+	input_sat_file=$ABS_PATH"hc"$number"\_input_sat.lp"
+	input_unsat_file=$ABS_PATH"hc"$number"\_input_unsat.lp"
 	
-	sat_exp_file="hc$number\_sat_exp.txt"
+	sat_exp_file=$ABS_PATH"hc"$number"\_sat_exp.txt"
 
 	output_unsat_file="/tmp/hc$number\_out_unsat.txt"
 	output_sat_file="/tmp/clingo_hc$number_out_sat.txt"
@@ -27,7 +35,7 @@ do
 
 	# UNSAT tests
 
-	clingo basic_constraints.lp $hc_file $input_unsat_file 0 > $output_unsat_file  2>/dev/null
+	clingo $basic_hc_file $hc_file $input_unsat_file 0 > $output_unsat_file  2>/dev/null
 
 	if ! grep -q "UNSATISFIABLE" $output_unsat_file; then
 		echo "Error UNSAT constraint $number"
@@ -37,9 +45,9 @@ do
 
 	# SAT tests
 
-	clingo basic_constraints.lp $hc_file $input_sat_file 0 > $output_sat_file  2>/dev/null
+	clingo $basic_hc_file $hc_file $input_sat_file 0 > $output_sat_file  2>/dev/null
 
-	answer=$(python sat-answers-comparator.py $sat_exp_file < $output_sat_file)
+	answer=$(python $sat_answers_comparator_path $sat_exp_file < $output_sat_file)
 
 	if [ $answer != "True" ]; then
 		echo "Error SAT constraint $number"
