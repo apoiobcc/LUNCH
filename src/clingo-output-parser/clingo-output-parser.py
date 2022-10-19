@@ -88,7 +88,7 @@ def make_table(sched):
             else:
                 classes = ""
                 for c in sched[day, time]:
-                    classes = classes + c[0] + "\n"
+                    classes = classes + c[0] + "-" + c[1] + "\n"
                 row.append(classes)
         body.append(row)
     return head,body
