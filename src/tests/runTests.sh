@@ -2,6 +2,11 @@
 
 # This script runs SAT and UNSAT tests for all the constraints.
 
+# Alias to the clingo runner of the system
+clingo() {
+    python -m clingo $@
+}
+
 hc_quantity=8
 
 ABS_PATH=$(dirname "$0")"/"
