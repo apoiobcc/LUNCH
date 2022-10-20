@@ -82,7 +82,6 @@ course(mac0113,22,hirata). % ?- ?- will not appear in the table at all (night ti
 course(mac0115,15,sinai).
 num_classes(mac0115,2).
 
-
 course(mac2166,1,guilherme). % ?- maybe group (1,POLI) is not equal group 1 and so on to all next groups
 num_classes(mac2166,2).
 :- not class(mac2166,1,guilherme,212).
@@ -178,6 +177,88 @@ course(mac0427,54,walter).
 course(mac0499,45,nina).
 num_classes(mac0499,1).
 
+% Not mandatory graduation courses
+
+course(mac0213,0,leliane).
+course(mac0213,0,flavio).
+num_classes(mac0213,1).
+
+course(mac0214,0,leliane).
+course(mac0214,0,flavio).
+num_classes(mac0214,1).
+
+course(mac0215,0,leliane).
+course(mac0215,0,flavio).
+num_classes(mac0215,1).
+
+course(mac0218,0,alfredo).
+num_classes(mac0218,2).
+
+course(mac0219,0,alfredo). % ?- graduation and postgrad course 
+num_classes(mac0219,2).
+% course(mac5747,0,alfredo).
+% num_classes(mac5747,2).
+% postgrad(mac5747).
+
+course(mac0320,0,yoshiko).
+num_classes(mac0320,2).
+
+course(mac0327,0,coelho).
+num_classes(mac0327,2).
+
+course(mac0331,0,cris). % ?- graduation and postgrad course 
+num_classes(mac0331,2).
+% course(mac5747,0,cris).
+% num_classes(mac5747,2).
+% postgrad(mac5747).
+
+course(mac0336,0,routo). % ?- graduation and postgrad course
+num_classes(mac0336,2).
+% course(mac5723,0,routo).
+% num_classes(mac5723,2).
+% postgrad(mac5723).
+
+course(mac0337,0,marcelinho). % ?- graduation and postgrad course
+num_classes(mac0337,2).
+% course(mac5900,0,marcelinho).
+% num_classes(mac5900,2).
+% postgrad(mac5900).
+
+course(mac0352,0,daniel).
+num_classes(mac0352,2).
+
+course(mac0417,0,marcondes). % ?- graduation and postgrad course
+num_classes(mac0417,2).
+% course(mac5768,0,marcondes).
+% num_classes(mac5768,2).
+% postgrad(mac5768).
+
+course(mac0420,0,hitoshi). % ?- graduation and postgrad course
+num_classes(mac0420,2).
+% course(mac5744,0,hitoshi).
+% num_classes(mac5744,2).
+% postgrad(mac5744).
+
+course(mac0425,0,leliane).  % ?- graduation and postgrad course
+num_classes(mac0425,2).
+% course(mac5739,0,leliane).
+% num_classes(mac5739,2).
+% postgrad(mac5739).
+
+course(mac0439,0,kelly).
+num_classes(mac0439,2).
+
+course(mac0460,0,nina). % ?- graduation and postgrad course
+num_classes(mac0460,2).
+% course(mac5832,0,nina).
+% num_classes(mac5832,2).
+% postgrad(mac5832).
+
+course(mac0536,0,sinai). % ?- graduation and postgrad course
+num_classes(mac0536,2).
+% course(mac6928,0,sinai).
+% num_classes(mac6928,2).
+% postgrad(mac6928).
 
 %%% Avaliability %%%
 
@@ -294,3 +375,56 @@ available(walter,123). % ?- should be 19:20
 available(walter,424). % ?- should be 21:20
 
 available(nina,611). % ?- saturday 7:00
+
+% Not mandatory graduation avaliability
+
+available(leliane,611). % ?- saturday 8:00
+available(flavio,611). % ?- saturday 8:00
+
+available(leliane,621). % ?- saturday 14:00
+available(flavio,621). % ?- saturday 14:00
+
+available(leliane,612). % ?- saturday 10:00
+available(flavio,612). % ?- saturday 10:00
+
+available(alfredo,121).
+available(alfredo,322).
+
+available(alfredo,122).
+available(alfredo,422).
+
+available(yoshiko,121).
+available(yoshiko,422).
+
+available(coelho,321).
+available(coelho,512).
+
+available(cris,121).
+available(cris,322).
+
+available(routo,222).
+available(routo,421).
+
+available(marcelinho,212).
+available(marcelinho,411).
+
+available(daniel,211).
+available(daniel,412).
+
+available(marcondes,221).
+available(marcondes,412).
+
+available(hitoshi,312).
+available(hitoshi,511).
+
+available(leliane,222).
+available(leliane,421).
+
+available(kelly,212).
+available(kelly,512).
+
+available(nina,121).
+available(nina,322).
+
+available(sinai,321).
+available(sinai,513). % ?- should be 14:00 but conflicts with hc5
