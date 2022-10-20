@@ -45,6 +45,8 @@ teacher(ronaldo).
 
 %%% Courses %%%
 
+% Introduction courses
+
 course(ccm0128,1,yoshiharu).
 num_classes(ccm0128,2).
 
@@ -80,8 +82,6 @@ course(mac0113,22,hirata). % ?- ?- will not appear in the table at all (night ti
 course(mac0115,15,sinai).
 num_classes(mac0115,2).
 
-
-% ?- poli courses will be considered constant to prevent a large amount of answers
 
 course(mac2166,1,guilherme). % ?- maybe group (1,POLI) is not equal group 1 and so on to all next groups
 num_classes(mac2166,2).
@@ -134,8 +134,54 @@ course(mac2166,12,alair).
 
 % missing leonidas mac2166 13,POLI dates.
 
+% Graduation and mandatory courses
+
+course(mac0102,45,leliane).
+course(mac0102,45,flavio).
+num_classes(mac0102,1).
+
+course(mac0209,1,marcondes).
+num_classes(mac0209,2).
+
+course(mac0210,45,ernesto).
+num_classes(mac0210,2).
+
+course(mac0321,1,fabio).
+num_classes(mac0321,2).
+:- not class(mac0321,1,fabio,411).
+:- not class(mac0321,1,fabio,412).
+
+course(mac0321,2,fabio).
+:- not class(mac0321,2,fabio,511).
+:- not class(mac0321,2,fabio,512).
+
+course(mac0323,45,carlinhos).
+num_classes(mac0323,2).
+
+course(mac0329,45,junior).
+num_classes(mac0329,2).
+
+course(mac0350,45,jef).
+num_classes(mac0350,2).
+
+course(mac0422,0,alan). % ?- graduation and postgrad course 
+% course(mac5753,0,alan).
+num_classes(mac0422,2). 
+% num_classes(mac5753,2).
+% postgrad(mac5753).
+
+course(mac0427,44,walter).
+num_classes(mac0427,2).
+
+course(mac0427,54,walter).
+
+course(mac0499,45,nina).
+num_classes(mac0499,1).
+
 
 %%% Avaliability %%%
+
+% Introduction courses avaliability
 
 available(yoshiharu,221).
 available(yoshiharu,322).
@@ -211,3 +257,40 @@ available(alair,512). % ?- should be 9:20
 
 available(alair,313). % ?- should be 13:10
 available(alair,511). % ?- should be 7:30
+
+% Graduation and mandatory avaliability
+
+available(leliane,413). % ?- should be 13:00
+available(flavio,413). % ?- should be 13:00
+
+available(marcondes,121).
+available(marcondes,122).
+
+available(ernesto,211).
+available(ernesto,411).
+
+available(fabio,411). % ?- should be 8:20
+available(fabio,412). % ?- should be 10:20
+
+available(fabio,511). % ?- should be 8:20
+available(fabio,512). % ?- should be 10:20
+
+available(carlinhos,212).
+available(carlinhos,412).
+
+available(junior,211).
+available(junior,412).
+
+available(jef,212).
+available(jef,511).
+
+available(alan,112).
+available(alan,321).
+
+available(walter,122).
+available(walter,421).
+
+available(walter,123). % ?- should be 19:20
+available(walter,424). % ?- should be 21:20
+
+available(nina,611). % ?- saturday 7:00
