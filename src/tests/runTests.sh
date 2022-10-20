@@ -9,27 +9,27 @@ clingo() {
 
 hc_quantity=8
 
-ABS_PATH=$(dirname "$0")"/"
+ABS_PATH=$(dirname "$0")
+CONSTRAINTS_DIR="$ABS_PATH/../constraints"
 
-sat_answers_comparator_path=$ABS_PATH"sat-answers-comparator.py"
+sat_answers_comparator_path="$ABS_PATH/sat-answers-comparator.py"
 
 for number in $(seq 1 $hc_quantity)
 do
 
 	# Files paths used in the execution
 
-	hc_file=$ABS_PATH"hc"$number".lp"
+	hc_file="$CONSTRAINTS_DIR/hc$number.lp"
 
-	basic_hc_file=$ABS_PATH"basic_constraints.lp"
+	basic_hc_file="$CONSTRAINTS_DIR/basic_constraints.lp"
 
-	input_sat_file=$ABS_PATH"hc"$number"\_input_sat.lp"
-	input_unsat_file=$ABS_PATH"hc"$number"\_input_unsat.lp"
-	
-	sat_exp_file=$ABS_PATH"hc"$number"\_sat_exp.txt"
+	input_sat_file="$ABS_PATH/hc${number}_input_sat.lp"
+	input_unsat_file="$ABS_PATH/hc${number}_input_unsat.lp"
 
-	output_unsat_file="/tmp/hc$number\_out_unsat.txt"
-	output_sat_file="/tmp/clingo_hc$number_out_sat.txt"
+	sat_exp_file="$ABS_PATH/hc${number}_sat_exp.txt"
 
+	output_unsat_file="/tmp/hc${number}_out_unsat.txt"
+	output_sat_file="/tmp/clingo_hc${number}_out_sat.txt"
 
 	# Test if all files needed exist
 
