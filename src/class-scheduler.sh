@@ -8,7 +8,7 @@ BASIC_CONSTRAINTS="$CONSTRAINTS_DIR/basic_constraints.lp"
 HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp")
 INPUT="$BASE_DIR/input.lp"
 
-python3 -m clingo 1 \
+clingo 1 \
 	$BASIC_CONSTRAINTS \
 	$HARD_CONSTRAINTS \
 	$INPUT | python3 $OUTPUT_PARSER
