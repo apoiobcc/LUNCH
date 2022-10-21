@@ -10,8 +10,8 @@ available/2(teacher name, period)
 available(profAAA, 111).
 available(profAAA, 122).
 
-available(profBBB, 311).
-available(profBBB, 211).
+available(profBBB, 111).
+available(profBBB, 122).
 
 %*
 obligatory/2(course id, ideal period):
@@ -29,4 +29,4 @@ num_classes(macBBB, 2).
 course/3(course id, group id, teacher name)
 *%
 course(macAAA, 1, profAAA).
-course(macBBB, 1, profBBB).
+course(macBBB, 2, profBBB).
