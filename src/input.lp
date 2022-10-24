@@ -113,11 +113,12 @@ num_classes(mac0350,2).
 obligatory(mac0350,3).
 
 course(mac0422,0,alan). % ?- graduation and postgrad course 
-% course(mac5753,0,alan).
+course(mac5753,0,alan).
 num_classes(mac0422,2). 
-% num_classes(mac5753,2).
-% postgrad(mac5753).
+num_classes(mac5753,2).
+postgrad(mac5753).
 obligatory(mac0422,3).
+joint(mac0422,mac5753).
 
 
 course(mac0427,44,walter).
@@ -155,9 +156,10 @@ num_classes(mac0218,2).
 
 course(mac0219,0,alfredo). % ?- graduation and postgrad course 
 num_classes(mac0219,2).
-% course(mac5747,0,alfredo).
-% num_classes(mac5747,2).
-% postgrad(mac5747).
+course(mac5747,0,alfredo).
+num_classes(mac5747,2).
+postgrad(mac5747).
+joint(mac0219,mac5747).
 
 course(mac0320,0,yoshiko).
 num_classes(mac0320,2).
@@ -167,57 +169,67 @@ num_classes(mac0327,2).
 
 course(mac0331,0,cris). % ?- graduation and postgrad course 
 num_classes(mac0331,2).
-% course(mac5747,0,cris).
-% num_classes(mac5747,2).
-% postgrad(mac5747).
+course(mac5747,0,cris).
+num_classes(mac5747,2).
+postgrad(mac5747).
+joint(mac0331,mac5747).
 
 course(mac0336,0,routo). % ?- graduation and postgrad course
 num_classes(mac0336,2).
-% course(mac5723,0,routo).
-% num_classes(mac5723,2).
-% postgrad(mac5723).
+course(mac5723,0,routo).
+num_classes(mac5723,2).
+postgrad(mac5723).
+joint(mac0336,mac5723).
+
 
 course(mac0337,0,marcelinho). % ?- graduation and postgrad course
 num_classes(mac0337,2).
-% course(mac5900,0,marcelinho).
-% num_classes(mac5900,2).
-% postgrad(mac5900).
+course(mac5900,0,marcelinho).
+num_classes(mac5900,2).
+postgrad(mac5900).
+joint(mac0337,mac5900).
 
 course(mac0352,0,daniel).
 num_classes(mac0352,2).
 
 course(mac0417,0,marcondes). % ?- graduation and postgrad course
 num_classes(mac0417,2).
-% course(mac5768,0,marcondes).
-% num_classes(mac5768,2).
-% postgrad(mac5768).
+course(mac5768,0,marcondes).
+num_classes(mac5768,2).
+postgrad(mac5768).
+joint(mac0417,mac5768).
 
 course(mac0420,0,hitoshi). % ?- graduation and postgrad course
 num_classes(mac0420,2).
-% course(mac5744,0,hitoshi).
-% num_classes(mac5744,2).
-% postgrad(mac5744).
+course(mac5744,0,hitoshi).
+num_classes(mac5744,2).
+postgrad(mac5744).
+joint(mac0420,mac5744).
 
 course(mac0425,0,leliane).  % ?- graduation and postgrad course
 num_classes(mac0425,2).
-% course(mac5739,0,leliane).
-% num_classes(mac5739,2).
-% postgrad(mac5739).
+course(mac5739,0,leliane).
+num_classes(mac5739,2).
+postgrad(mac5739).
+joint(mac0425,mac5739).
 
 course(mac0439,0,kelly).
 num_classes(mac0439,2).
 
 course(mac0460,0,nina). % ?- graduation and postgrad course
 num_classes(mac0460,2).
-% course(mac5832,0,nina).
-% num_classes(mac5832,2).
-% postgrad(mac5832).
+course(mac5832,0,nina).
+num_classes(mac5832,2).
+postgrad(mac5832).
+joint(mac0460,mac5832).
+
 
 course(mac0536,0,sinai). % ?- graduation and postgrad course
 num_classes(mac0536,2).
-% course(mac6928,0,sinai).
-% num_classes(mac6928,2).
-% postgrad(mac6928).
+course(mac6928,0,sinai).
+num_classes(mac6928,2).
+postgrad(mac6928).
+joint(mac0536,mac6928).
 
 %%% Avaliability %%%
 
