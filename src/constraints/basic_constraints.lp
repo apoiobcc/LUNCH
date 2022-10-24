@@ -49,3 +49,12 @@ conflict(C1, G1, C2, G2, P) :-
     C1 == C2, G1 != G2.
 
 
+%*
+joint/2(first course id, second course id)
+------------------------------------------
+Indicates classes that are lectured together, normally one from graduation and other from postgraduation
+*%
+
+joint(C1,C2) :- joint(C2,C1).
+
+
