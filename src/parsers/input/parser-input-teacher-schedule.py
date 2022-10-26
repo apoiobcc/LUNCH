@@ -19,7 +19,7 @@ def transformPeriod(p):
         return 0
 
 def getProfessorName(email):
-        return email.split('@')[0].lower()
+        return email.split('@')[0].lower().replace('.', '')
 
 def getDayHeader(header):
         return header.split('[')[1][:-1]
@@ -70,7 +70,7 @@ def printDayPredicate(predicate, professor, periods):
                         p = day + hour
                         print(f'{predicate}({professor},{p}).')
 
-file_name = 'Horarios-profs-1s22 - Página1.csv'
+file_name = sys.argv[1]
 info = getProfessorSched(file_name)
 for i in info:
         printDayPredicate("available", i['professor'], i['available'])
