@@ -10,7 +10,7 @@ def parser(predicate, n_args, file_name):
 	        atom = predicate + "("
 	        for i in range(n_args-1):
 	            atom += row[i].lower() + ","
-	        atom += row[n_args-1].lower() + ")"
+	        atom += row[n_args-1].lower() + ")."
 	        clingo_input += atom + "\n"
     return clingo_input
 	        
