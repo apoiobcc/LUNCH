@@ -51,7 +51,6 @@ def getProfessorSched(file_name):
                                         periods.append(transformPeriod(p))
                                 atom['restriction'][day] = periods
                         atom['available'] = availablePeriod(atom['restriction'])
-                        print(atom)
                         infos.append(atom)
         return infos
 
