@@ -153,3 +153,12 @@ Example:
 teacher(profAAA).
 teacher(profBBB).
 ```
+####  **joint/1(teacher_id)**:
+
+Indicates classes that are lectured together, normally one from graduation and other from postgraduation.
+
+Example:
+
+```
+joint(macAAA, macBBB).
+```
