@@ -24,4 +24,12 @@ The following `bash` snippet runs all tests for the project:
 docker compose up test
 ```
 
+## Running the POC
 
+While we are not yet done with the class scheduler, there is a *proof of
+concept* (POC) version of the expected final product, without some of the
+required constraints. The POC can be run using by starting a interactive `bash`
+session within the development environment (see [the section
+above](#configuring-the-development-environment)) and running the script
+`class-scheduler.sh`. The expected output is a pretty table with a valid
+schedule.
