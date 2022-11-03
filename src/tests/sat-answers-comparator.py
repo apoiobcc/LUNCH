@@ -2,9 +2,9 @@
 Sat Answers Comparator
 ----------------------
 This program receives two files, one (from stdin) containing a clingo output and the other (from the argument) the expected output.
-The program compares both and deciedes if they are equal, meaning the model is correct.
+The program compares both and decides if they are equal, meaning the model is correct.
 Input: clingo output and the expected output
-Output: Pŕint true if both are equal and false if not
+Output: Print true if both are equal and false if not
 
 Running Example
 $ python3 sat-answers-comparator.py hc1_expected_input_sat.txt < clingo_output_hc1.txt
@@ -53,20 +53,20 @@ def compare_answers(clingo,expected):
 	return clingo_set == expected_set
 
 def parse_expected_input(raw):
-    '''
-    Separate each answer (from expected output) and return a list with all classes scheduled
-    If no answer is found, return False
-    '''
-    parsed = raw.split("\n\n")
-    if (not parsed): return False
-
-    answers_list = list()
-    for p in parsed:
-    	answer = p.replace("\n","").split(" ")
-    	if answer == [""]:
-    		continue
-    	answers_list.append(answer)
-    return answers_list
+	'''
+	Separate each answer (from expected output) and return a list with all classes scheduled
+	If no answer is found, return False
+	'''
+	parsed = raw.split("\n\n")
+	if (not parsed): return False
+	
+	answers_list = list()
+	for p in parsed:
+		answer = p.replace("\n","").split(" ")
+		if answer == [""]:
+			continue
+		answers_list.append(answer)
+	return answers_list
 
 
 def main(args):
