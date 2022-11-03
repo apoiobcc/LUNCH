@@ -2,7 +2,7 @@
 
 # This script runs SAT and UNSAT tests for all the constraints.
 
-hc_quantity=8
+hc_quantity=9
 
 ABS_PATH=$(dirname "$0")
 CONSTRAINTS_DIR="$ABS_PATH/../constraints"
