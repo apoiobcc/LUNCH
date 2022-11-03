@@ -6,24 +6,30 @@ Suggestions of change to this document are always welcome.
 
 ## Configuring the development environment
 
-Installation of a compatible [clingo](https://potassco.org/clingo/) solver can
-be done using the Python package manager [pip](https://pypi.org/project/pip/).
-We recommend the use of virtual environments, since it greatly reduces the
-number of dependency problems during development. The following Bash snippet
-creates and configures a working development environment using Python's
-[venv](https://docs.python.org/3/library/venv.html) :
+Installation of a compatible [clingo](https://potassco.org/clingo/) solver and
+all of the Python dependencies can be done using [docker
+compose](https://docs.docker.com/compose/). There are currently two relevant
+services, `dev` and `test`, that can be used to run a interactive shell in the
+preconfigured environment and to run the constraints unit test routine,
+respectively
+
+The following `bash` snippet runs a `bash` shell in the development environment:
 
 ```bash
-# Create a virtual environment in the hidden directory ".venv"
-python -m venv .venv
-# Activate the virtual environment and install dependencies
-source .venv/bin/activate
-pip install -r requirements.txt
-# Deactivates the virtual environment
-deactivate
+docker compose run --rm dev bash
+```
+The following `bash` snippet runs all tests for the project:
+
+```bash
+docker compose up test
 ```
 
-The clingo solver can now be run by:
+## Running the POC
 
-1. Activating the python virtual environment;
-2. Running the executable with `python -m clingo [clingo args]`.
+While we are not yet done with the class scheduler, there is a *proof of
+concept* (POC) version of the expected final product, without some of the
+required constraints. The POC can be run using by starting a interactive `bash`
+session within the development environment (see [the section
+above](#configuring-the-development-environment)) and running the script
+`class-scheduler.sh`. The expected output is a pretty table with a valid
+schedule.
