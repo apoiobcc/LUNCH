@@ -13,6 +13,17 @@
 # expected output file should contain ALL of the expected resulting predicates
 # and is agnostic to ordering of the answers. The comparison between expected
 # and resulting output is done by the script `sat-answers-comparator.py`
+#
+# Tests for hard and soft constraints should be placed in the "hard" and "soft"
+# directories, respectively. The naming convention for the test files is as
+# follows:
+#
+# - "unsat.lp" -> UNSAT test
+# - "sat.lp" -> SAT test
+# - "sat_exp.txt" -> SAT test expected output
+#
+# If more than one tests exists for a same constraint, append a number to the
+# filename. Example: "unsat1.lp", "sat1.lp" and "sat_exp1.txt".
 
 BASE_DIR=$(dirname "$0")
 CONSTRAINTS_DIR="$BASE_DIR/../constraints"
