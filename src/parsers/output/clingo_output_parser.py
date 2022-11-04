@@ -25,7 +25,8 @@ import sys
 from clingo_output_support import *
 
 def main():
-    arg = int(sys.argv[1])
+    arg = 0
+    if (len(sys. argv) > 1): arg = int(sys.argv[1])
     raw = sys.stdin.read()
     answers_list = parse_input(raw)
     if (not answers_list): 
