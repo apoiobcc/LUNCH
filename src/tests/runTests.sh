@@ -50,7 +50,7 @@ for hc_file in $HARD_CONSTRAINTS; do
 
 		# NOTE: cannot detect when file is missing if one test is labeled sat.lp
 		# and other test is labeled sat1.lp
-		clingo "$BASIC_CONSTRAINTS" "$hc_file" "$sat_test" 2>/dev/null |
+		clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$sat_test" 2>/dev/null |
 			python3 "$SAT_VERIFICATION_PROG" "$expected_output" |
 			grep -q "True" &&
 			echo "  $test_filename [OK]" ||
@@ -66,7 +66,7 @@ for hc_file in $HARD_CONSTRAINTS; do
 
 	for unsat_test in $unsat_tests; do
 		test_filename=$(basename "$unsat_test")
-		clingo "$BASIC_CONSTRAINTS" "$hc_file" "$unsat_test" 2>/dev/null |
+		clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$unsat_test" 2>/dev/null |
 			grep -q "UNSATISFIABLE" &&
 			echo "  $test_filename [OK]" ||
 			echo "  $test_filename [FAIL]"
