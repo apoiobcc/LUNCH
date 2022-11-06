@@ -25,4 +25,11 @@ def calculate_weight_sc1(IDEAL1, IDEAL2):
         weight = 10//difference
     return clingo.Number(weight)
 
+def calculate_weight_sc2(IDEAL1, IDEAL2):
+    periodo1 = IDEAL1.number
+    periodo2 = IDEAL2.number
+    difference = abs(IDEAL1 - IDEAL2)
+    weight = 10//difference
+    return clingo.Number(weight)
+
 #end.
