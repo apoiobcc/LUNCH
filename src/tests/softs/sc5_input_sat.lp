@@ -53,6 +53,6 @@ obligatory(mac333,1).
 curriculum/2(course id, curriculum)
 ----------------------------------
 *%
-curriculum(mac222,statistics).
+curriculum(mac222,statistics, 0).
 
-curriculum(mac444,statistics).
+curriculum(mac444,statistics, 0).
