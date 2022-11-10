@@ -36,7 +36,7 @@ curriculum/2(course id, curriculum)
 -----------------------------------
 Identifies a course as part of a curriculum.
 *%
-curriculum(macAAA, systems).
-curriculum(macCCC, systems).
-curriculum(macBBB, ai).
-curriculum(macDDD, ai).
+curriculum(macAAA, systems,1).
+curriculum(macCCC, systems,1).
+curriculum(macBBB, ai,1).
+curriculum(macDDD, ai,1).
