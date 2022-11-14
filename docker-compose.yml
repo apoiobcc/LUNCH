@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  dev:
+    build: .
+    volumes:
+      - .:/class-scheduler
+    working_dir: /class-scheduler/src
+    command: bash
+  # Run tests
+  test:
+    build: .
+    volumes:
+      - .:/class-scheduler
+    working_dir: /class-scheduler/src/tests/
+    command: bash runTests.sh

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project aims to facilitate the process of scheduling classes. Given the classes that must be taught that semester, their frequency, the professors who lectures each class and the professors' availability the program generates timetables that follow the restrictions. In addition, we seek to improve the program by giving weak restrictions that can be used to decide which are the best schedules generated. 
+This project aims to facilitate the process of scheduling classes. Given the classes that must be taught that semester, their frequency, the professors who lectures each class and the professors' availability the program generates timetables that follow the restrictions. In addition, we seek to improve the program by giving weak restrictions that can be used to decide which are the best schedules generated.
 
 It will be using Potassco Clingo ASP language to resolve the problem by satisfability.
 
@@ -15,7 +15,7 @@ It will be using Potassco Clingo ASP language to resolve the problem by satisfab
 
 ### Input
 
-####  **course/3(course id, group id, teacher id)**: 
+####  **course/3(course id, group id, teacher id)**:
 
 Identifies a course offering by a discipline id and a group id that should be tought by a especific teacher.
 
@@ -26,7 +26,7 @@ course(macAAA, 2, profAAA).
 course(macBBB, 1, profBBB).
 ```
 
-####  **num_classes/2(class_id, number_of_weelky classes)**: 
+####  **num_classes/2(class_id, number_of_weelky classes)**:
 
 Assign the frenquency for a given class (or how many time it should be tought in a week).
 
@@ -41,7 +41,7 @@ num_classes(macBBB, 2).
 :- num_classes(C, H1), num_classes(C, H2), H1 != H2.
 ```
 
-####  **available/2(teacher name, period)** 
+####  **available/2(teacher name, period)**
 
 Indicates a teacher's available lecturing periods.
 
@@ -57,7 +57,7 @@ available(profAAA, 121). % profAAA is available on monday's first period of the 
 available(profAAA, 212). % profAAA is available on tuesday's second period of the morning
 ```
 
-####  **postgrad/1(course id)**: 
+####  **postgrad/1(course id)**:
 
 Identifies a course as part of the postgraduate curriculum. If it is not part of the postgraduate curriculum than the course is automatically part of the graduate curriculum.
 
@@ -66,7 +66,7 @@ Example:
 postgrad(macBBB).
 ```
 
-####  **curriculum/2(course id, curriculum)**: 
+####  **curriculum/2(course id, curriculum)**:
 
 Identifies a course as part of a curriculum.
 
@@ -76,7 +76,7 @@ curriculum(macCCC, systems).
 curriculum(macCCC, ai).
 ```
 
-####  **obligatory/2(course id, ideal period)**: 
+####  **obligatory/2(course id, ideal period)**:
 
 Identifies a course as obligatory, each obligatory course has its own ideal period.
 
@@ -85,7 +85,7 @@ Example:
 obligatory(macAAA, 1).
 ```
 
-####  **double/1(course id)**: 
+####  **double/1(course id)**:
 
 Identifies that the course's classes should be consecutives.
 
@@ -95,29 +95,29 @@ double(macAAA).
 ```
 
 ### Output
-####  **class/4(course id, group id, teacher, period)**: 
+####  **class/4(course id, group id, teacher, period)**:
 
 A class represents a cell in the schedule timetable.
 
 It assigns a course and group to a teacher who will lecture it in a period.
 
-It is genarated so N classes of a given course are scheduled, considering the teachers available periods. 
+It is genarated so N classes of a given course are scheduled, considering the teachers available periods.
 ```
 { class(C, G, T, P) :- available(T, P) } == N :- course(C, G, T, N).
 ```
 
 ### Support
 
-####  **course/4(course id, group id, teacher id, number of weekly classes)**: 
+####  **course/4(course id, group id, teacher id, number of weekly classes)**:
 
-Identifies a course offering by its discipline id, a group id, a number of weekly classes and the responsible teacher. 
+Identifies a course offering by its discipline id, a group id, a number of weekly classes and the responsible teacher.
 
 This predicate is generated as following:
 ```
 course(C, G, T, N) :- course(C, G, T), num_classes(C, N).
 ```
 
-####  **conflict/5(first course id, first course group, second course id, second course grouyp, period)**: 
+####  **conflict/5(first course id, first course group, second course id, second course grouyp, period)**:
 
 Indicates a conflict between 2 classes of diferent courses or groups.
 
@@ -135,7 +135,7 @@ conflict(C1, G1, C2, G2, P) :-
     C1 == C2, G1 != G2.
 ```
 
-####  **course/1(course id)**: 
+####  **course/1(course id)**:
 
 Alias to course/4. Identifies a course.
 
@@ -144,7 +144,7 @@ This predicate is generated as following:
 course(X) :- course(X, _, _, _).
 ```
 
-####  **teacher/1(teacher_id)**: 
+####  **teacher/1(teacher_id)**:
 
 Identifies a teacher by id.
 
@@ -152,4 +152,13 @@ Example:
 ```
 teacher(profAAA).
 teacher(profBBB).
+```
+####  **joint/1(teacher_id)**:
+
+Indicates classes that are lectured together, normally one from graduation and other from postgraduation.
+
+Example:
+
+```
+joint(macAAA, macBBB).
 ```

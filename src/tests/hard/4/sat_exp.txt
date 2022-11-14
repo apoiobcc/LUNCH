@@ -1,0 +1,1 @@
+course(macAAA,1,profAAA,2) course(macAAA) available(profAAA,112) available(profAAA,212) class(macAAA,1,profAAA,111) teacher(profAAA) class(macAAA,1,profAAA,112) class(macAAA,1,profAAA,212)

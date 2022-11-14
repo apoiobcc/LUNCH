@@ -1,0 +1,1 @@
+double(macAAA) course(macAAA,1,profAAA,2) course(macAAA) num_classes(macAAA,2) course(macAAA,1,profAAA) available(profAAA,111) available(profAAA,112) teacher(profAAA) class(macAAA,1,profAAA,111) class(macAAA,1,profAAA,112)

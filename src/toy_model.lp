@@ -7,20 +7,43 @@ teacher(profAAA).
 teacher(profBBB).
 
 %*
-course/3(course id, teacher name, number of weekly courses)
-------------------------------------------------------------
-Identifies a course by name and number of weekly classes.
+num_classes/2(class id, number of weelky classes)
+-------------------------------------------------
+Assign a number of weekly classes for a given class.
 *%
-course(macAAA, profAAA, 2).
-course(macBBB, profBBB, 3).
-course(macCCC, profAAA, 2).
+num_classes(macAAA, 2).
+num_classes(macBBB, 2).
+
+%*
+Restriction #(restriction identifier)
+-------------------------------------
+A class cannot be defined with two different number of weekly classes.
+*%
+:- num_classes(C, H1), num_classes(C, H2), H1 != H2.
+
+%*
+course/3(course id, group id, teacher id)
+-----------------------------------------
+Identifies a course offering by a discipline id and a group id.
+*%
+course(macAAA, 1, profAAA).
+course(macAAA, 2, profAAA).
+course(macBBB, 1, profBBB).
+
+%*
+course/4(course id, group id, teacher id, number of weekly classes)
+-------------------------------------------------------------------
+Identifies a course offering by a discipline id, a group id, a number of weekly
+classes and the responsible teacher.
+*%
+course(C, G, T, N) :- course(C, G, T), num_classes(C, N).
 
 %*
 course/1(course id)
 -------------------
-Alias to course/3.
+Alias to course/4.
 *%
-course(X) :- course(X, _, _).
+course(X) :- course(X, _, _, _).
 
 %*
 postgrad/1(course id)
@@ -38,21 +61,11 @@ curriculum(macCCC, systems).
 curriculum(macCCC, ai).
 
 %*
-obligatory/1(course id)
------------------------
+obligatory/2(course id, ideal period)
+-------------------------------------
 Identifies a course as obligatory.
 *%
-obligatory(macAAA).
-
-%*
-Restriction #(restriction identifier)
--------------------------------------
-A class cannot be defined with two different number of weekly classes.
-NOTE: we maybe could expand this to contemplate all cases were two courses have
-the same course id.
-NOTE: discuss about two teachers lecturing the same subject
-*%
-:- course(C, _,  H1), course(C, _, H2), H1 != H2.
+obligatory(macAAA, 1).
 
 %*
 available/2(teacher name, period)
@@ -78,23 +91,32 @@ available(profAAA, 121).
 available(profAAA, 122).
 
 available(profBBB, 111).
-available(profBBB, 212).
-available(profBBB, 412).
+available(profBBB, 112).
 
 %*
-class/3(course id, teacher name, day of week, period)
------------------------------------------------------
+class/4(course id, group id, teacher, period)
+---------------------------------------------
 Schedule N classes of a given course, considering the teachers available
 periods. A class represents a cell in the schedule.
 *%
-{ class(C, T, P) : available(T, P) } == N :- course(C, T, N).
+{ class(C, G, T, P) : available(T, P) } == N :- course(C, G, T, N).
 
 %*
-conflict/3(course id 1, course id 2, period)
---------------------------------------------
-Indicates a conflict between 2 classes of diferent courses.
+conflict/5(first course id, first course group, second course id, second course grouyp, period)
+-----------------------------------------------------------------------------------------------
+Indicates a conflict between 2 classes of diferent courses or groups.
 *%
-conflict(C1, C2, P) :- class(C1, _, P), class(C2, _, P), C1 != C2.
+% class conflict
+conflict(C1, G1, C2, G2, P) :-
+    class(C1, G1, _, P),
+    class(C2, G2, _, P),
+    C1 != C2.
+
+% group conflict
+conflict(C1, G1, C2, G2, P) :-
+    class(C1, G1, _, P),
+    class(C2, G2, _, P),
+    C1 == C2, G1 != G2.
 
 %*
 Restriction #(restriction identifier)
@@ -102,15 +124,14 @@ Restriction #(restriction identifier)
 No classes can be scheduled on friday in the afternoon.
 TODO: considerar que é só a graduação
 *%
-:- class(_, _, 521).
-:- class(_, _, 522).
-
+:- class(_, _, _, 521).
+:- class(_, _, _, 522).
 
 %*
 Restriction #(restriction identifier)
 -------------------------------------
 Two classes lectured by the same teacher cannot conflict.
 *%
-:- course(C1, T, _), course(C2, T, _), conflict(C1, C2, _).
+:- course(C1, G1, T, _), course(C2, G2, T, _), conflict(C1, G1, C2, G2, _).
 
-#show class/3.
+#show class/4.
