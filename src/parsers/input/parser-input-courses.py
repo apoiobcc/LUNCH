@@ -23,11 +23,11 @@ $ python3 parser-input-courses.py
 import sys
 import csv
 
-'''
-Given the predicate name, number of arguments and file containing the information (csv),
-this function returns a long string containing all the clausules assembled
-'''
 def parser(predicate, n_args, file_name):
+    '''
+        Given the predicate name, number of arguments and file containing the information (csv),
+        this function returns a long string containing all the clausules assembled
+    '''
     with open(file_name) as csv_file:
         headers = next(csv_file)
         csv_reader = csv.reader(csv_file, delimiter=',')

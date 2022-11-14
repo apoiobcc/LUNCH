@@ -37,11 +37,11 @@ def getGroupId(course_name):
         group_id[group] = group_count
     return group_id[group]
 
-'''
-Receives the workload csv table 
-Returns a list of dictionaries that have the keys: teacher, course, semester
-'''
 def getWorkload(file_name):
+    '''
+        Receives the workload csv table 
+        Returns a list of dictionaries that have the keys: teacher, course, semester
+    '''
     with open(file_name) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         info = list()
@@ -62,11 +62,11 @@ def getWorkload(file_name):
                 info.append(atom)
         return info
 
-'''
-Given the list of dictionary and semester,
-Assemble the asp input for the course predicate of the given semester
-'''
 def assembleWorkload(info, semester):
+    '''
+        Given the list of dictionary and semester,
+        Assemble the asp input for the course predicate of the given semester
+    '''
     workload = ""
     for atom in info:
         if (atom['semester'] != semester): continue

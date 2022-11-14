@@ -24,10 +24,10 @@ This list represents all periods codes that a class can be given
 '''
 ALLPERIODS = [11, 12, 21, 22]
 
-'''
-Function that transforms a day in its code
-'''
 def transformDay(d):
+    '''
+        Function that transforms a day in its code
+    '''
     if (d == 'Segunda'): return 100
     if (d == 'Terça'): return 200
     if (d == 'Quarta'): return 300
@@ -35,10 +35,10 @@ def transformDay(d):
     if (d == 'Sexta'): return 500
     return 0
 
-'''
-Function that transforms a period in its code
-'''
 def transformPeriod(p):
+    '''
+        Function that transforms a period in its code
+    '''
     if (p.startswith("08")): return 11
     if (p.startswith("10")): return 12
     if (p.startswith("14")): return 21
@@ -51,16 +51,14 @@ def getTeacherName(email):
 def getDayHeader(header):
     return header.split('[')[1][:-1]
 
-'''
-This function receives a csv file that contains the columns:
-0-time_stamp | 1-teacher_email | 2-6 preferable_periods [day of the week] | 7-11 restricted_periods [day of the week]
-
-And returns a list of dictionaries
-The dictionaries keys are: teacher, preference, restriction, available.
-The values for preference, restriction, available are another list of dictionaries 
-that contains the time codes for each category
-'''
 def getTeacherSched(file_name):
+    '''
+        This function receives a csv file containing the teachers restrictions and preferable times
+        And returns a list of dictionaries
+        The dictionaries keys are: teacher, preference, restriction, available.
+        The values for preference, restriction, available are another list of dictionaries 
+        that contains the time codes for each category
+    '''
     with open(file_name) as csv_file:
         infos = list()
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -94,11 +92,11 @@ def getTeacherSched(file_name):
             infos.append(atom)
     return infos
 
-'''
-Given the restriction times dictionary
-Returns a dictonary with the times not restricted
-'''
 def availablePeriod(restriction):
+    '''
+        Given the restriction times dictionary
+        Returns a dictonary with the times not restricted
+    '''
     available = dict()
     for key in restriction.keys():
         periods = list()
@@ -107,11 +105,11 @@ def availablePeriod(restriction):
         available[key] = periods
     return available
 
-'''
-Assembles asp clausules given the predicate, first argument(teacher) and 
-a list of the second arguments
-'''
 def assembleDayPredicate(predicate, teacher, periods):
+    '''
+        Assembles asp clausules given the predicate, first argument(teacher) and 
+        a list of the second arguments
+    '''
     assembled = ""
     for day in periods.keys():
         for hour in periods[day]:
