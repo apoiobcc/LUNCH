@@ -38,48 +38,48 @@ HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp" | sort)
 ##  HARD CONSTRAINTS  ##
 ########################
 for hc_file in $HARD_CONSTRAINTS; do
-	constraint_num=$(echo "$hc_file" | grep -o '[0-9]\+')
-	test_dir="$HC_TEST_DIR/$constraint_num"
+    constraint_num=$(echo "$hc_file" | grep -o '[0-9]\+')
+    test_dir="$HC_TEST_DIR/$constraint_num"
 
-	echo "Testing HC$constraint_num:"
+    echo "Testing HC$constraint_num:"
 
-	#  Run all SAT tests
-	sat_tests=$(find "$test_dir" -regex '[^u]*sat[0-9]*\.lp')
+    #  Run all SAT tests
+    sat_tests=$(find "$test_dir" -regex '[^u]*sat[0-9]*\.lp')
 
-	if [[ -z "$sat_tests" ]]; then
-		echo "  [WARN] no SAT test found"
-	fi
+    if [[ -z "$sat_tests" ]]; then
+        echo "  [WARN] no SAT test found"
+    fi
 
-	for sat_test in $sat_tests; do
-		test_filename=$(basename "$sat_test")
-		sat_test_num=$(echo "$test_filename" | grep -o '[0-9]\+')
-		expected_output="${test_dir}/sat_exp${sat_test_num}.txt"
-		if ! [[ -f "$expected_output" ]]; then
-			echo "  [WARN] no expected output file for SAT test ${sat_test_num}"
-			continue
-		fi
+    for sat_test in $sat_tests; do
+        test_filename=$(basename "$sat_test")
+        sat_test_num=$(echo "$test_filename" | grep -o '[0-9]\+')
+        expected_output="${test_dir}/sat_exp${sat_test_num}.txt"
+        if ! [[ -f "$expected_output" ]]; then
+            echo "  [WARN] no expected output file for SAT test ${sat_test_num}"
+            continue
+        fi
 
-		# NOTE: cannot detect when file is missing if one test is labeled sat.lp
-		# and other test is labeled sat1.lp
-		clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$sat_test" 2>/dev/null |
-			python3 "$SAT_VERIFICATION_PROG" "$expected_output" |
-			grep -q "True" &&
-			echo "  $test_filename [OK]" ||
-			echo "  $test_filename [FAIL]"
-	done
+        # NOTE: cannot detect when file is missing if one test is labeled sat.lp
+        # and other test is labeled sat1.lp
+        clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$sat_test" 2>/dev/null |
+            python3 "$SAT_VERIFICATION_PROG" "$expected_output" |
+            grep -q "True" &&
+            echo "  $test_filename [OK]" ||
+            echo "  $test_filename [FAIL]"
+    done
 
-	#  Run all UNSAT tests
-	unsat_tests=$(find "$test_dir" -regex '.*unsat[0-9]*\.lp')
+    #  Run all UNSAT tests
+    unsat_tests=$(find "$test_dir" -regex '.*unsat[0-9]*\.lp')
 
-	if [[ -z "$unsat_tests" ]]; then
-		echo "  [WARN] no UNSAT test found"
-	fi
+    if [[ -z "$unsat_tests" ]]; then
+        echo "  [WARN] no UNSAT test found"
+    fi
 
-	for unsat_test in $unsat_tests; do
-		test_filename=$(basename "$unsat_test")
-		clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$unsat_test" 2>/dev/null |
-			grep -q "UNSATISFIABLE" &&
-			echo "  $test_filename [OK]" ||
-			echo "  $test_filename [FAIL]"
-	done
+    for unsat_test in $unsat_tests; do
+        test_filename=$(basename "$unsat_test")
+        clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$unsat_test" 2>/dev/null |
+            grep -q "UNSATISFIABLE" &&
+            echo "  $test_filename [OK]" ||
+            echo "  $test_filename [FAIL]"
+    done
 done

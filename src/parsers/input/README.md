@@ -14,7 +14,7 @@ For parsing the teacher's schedule information, the program `parser-input-teache
 |---|---|---|---|---|
 |2021/08/13 1:54:28 AM GMT-3|myusername@ime.usp.br|8:00-10:00;10:00-12:00|16:00-18:00|
 
-Run: 
+Run:
 
 ```
 parser-input-teacher-schedule.py <file_name>

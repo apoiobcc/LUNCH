@@ -57,4 +57,3 @@ Indicates classes that are lectured together, normally one from graduation and o
 
 joint(C1,C2) :- joint(C2,C1).
 
-

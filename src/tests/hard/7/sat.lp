@@ -8,7 +8,6 @@ available/2(teacher name, period)
 *%
 available(profAAA,111).
 
-
 %*
 course/3(course id, group id, teacher name)
 *%
