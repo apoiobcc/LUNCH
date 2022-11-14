@@ -50,9 +50,9 @@ obligatory(mac111,4).
 obligatory(mac333,1).
 
 %*
-curriculum/2(course id, curriculum)
+requiredElective/2(course id, curriculum)
 ----------------------------------
 *%
-curriculum(mac222,statistics, 0).
+requiredElective(mac222,statistics).
 
-curriculum(mac444,statistics, 0).
+requiredElective(mac444,statistics).
