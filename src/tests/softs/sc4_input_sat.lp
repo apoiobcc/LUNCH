@@ -9,10 +9,10 @@ teacher(profBBB).
 course/3(course id, group_id, teacher name, number of weekly courses)
 ------------------------------------------------------------
 *%
-course(macAAA, 1, profAAA, 1).
-course(macBBB, 1, profAAA, 1).
-course(macCCC, 1, profBBB, 1).
-course(macDDD, 1, profBBB, 1).
+course(macObligatory1, 1, profAAA, 1).
+course(macNotScience1, 1, profAAA, 1).
+course(macNotScience2, 1, profBBB, 1).
+course(macSciences1, 1, profBBB, 1).
 
 %*
 available/2(teacher name, period)
@@ -26,13 +26,11 @@ available(profBBB, 211).
 %*
 obligatory/2(course id, ideal period):
 *%
-obligatory(macAAA, 1).
-obligatory(macBBB, 3).
+obligatory(macObligatory1, 1).
 
 %*
 curriculum/2(course id, curriculum)
 -----------------------------------
 Identifies a course as part of a curriculum.
 *%
-curriculum(macCCC, sciences, 1).
-curriculum(macDDD, sciences, 1).
+curriculum(macSciences1, sciences, 1).
