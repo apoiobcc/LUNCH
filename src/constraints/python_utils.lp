@@ -16,9 +16,9 @@ def concat(*args):
     return ans
 
 def calculate_weight_sc1(IDEAL1, IDEAL2):
-    periodo1 = IDEAL1.number
-    periodo2 = IDEAL2.number
-    difference = abs(IDEAL1 - IDEAL2)
+    period1 = int(str(IDEAL1))
+    period2 = int(str(IDEAL2))
+    difference = abs(period1 - period2)
     if difference == 0:
         weight = 20
     else:
@@ -26,10 +26,20 @@ def calculate_weight_sc1(IDEAL1, IDEAL2):
     return clingo.Number(weight)
 
 def calculate_weight_sc2(IDEAL1, IDEAL2):
-    periodo1 = IDEAL1.number
-    periodo2 = IDEAL2.number
-    difference = abs(IDEAL1 - IDEAL2)
+    period1 = int(str(IDEAL1))
+    period2 = int(str(IDEAL2))
+    difference = abs(period1 - period2)
     weight = 10//difference
+    return clingo.Number(weight)
+
+def calculate_weight_sc6(CUR):
+    curriculum = str(CUR)
+    if (curriculum == 'theory'):
+        weight = 15
+    elif (curriculum == 'systems'):
+        weight = 10
+    else:
+        weight = 0
     return clingo.Number(weight)
 
 #end.
