@@ -48,7 +48,7 @@ postgrad(mac333).
 postgrad(mac555).
 
 %*
-curriculum/2(course id, curriculum)
+scope/2(course id, scope)
 -------------------------------------
 *%
 

@@ -39,4 +39,9 @@ obligatory/2(course id, ideal period)
 *%
 obligatory(mac333,4).
 
+%*
+elective/2(course id, ideal period)
+-------------------------------------
+*%
+
 elective(mac111,4).
