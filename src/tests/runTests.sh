@@ -34,6 +34,18 @@ SAT_VERIFICATION_PROG="$BASE_DIR/sat-answers-comparator.py"
 BASIC_CONSTRAINTS="$CONSTRAINTS_DIR/basic_constraints.lp"
 HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp" | sort)
 
+# Pretty print failed tests. This function expects the test input filename as
+# its first argument.
+print_fail() {
+    echo -e "\e[31m  $1 [FAIL]\e[0m"
+}
+
+# Pretty print success tests. This function expects the test input filename as
+# its first argument.
+print_success() {
+    echo -e "\e[32m  $1 [OK]\e[0m"
+}
+
 ########################
 ##  HARD CONSTRAINTS  ##
 ########################
@@ -41,7 +53,9 @@ for hc_file in $HARD_CONSTRAINTS; do
     constraint_num=$(echo "$hc_file" | grep -o '[0-9]\+')
     test_dir="$HC_TEST_DIR/$constraint_num"
 
-    echo "Testing HC$constraint_num:"
+    test_header="Testing HC$constraint_num:"
+    echo "$test_header"
+    echo "${test_header//[a-zA-Z0-9 :]/-}" # print line under the header
 
     #  Run all SAT tests
     sat_tests=$(find "$test_dir" -regex '[^u]*sat[0-9]*\.lp')
@@ -64,8 +78,8 @@ for hc_file in $HARD_CONSTRAINTS; do
         clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$sat_test" 2>/dev/null |
             python3 "$SAT_VERIFICATION_PROG" "$expected_output" |
             grep -q "True" &&
-            echo "  $test_filename [OK]" ||
-            echo "  $test_filename [FAIL]"
+            print_success "$test_filename" ||
+            print_fail "$test_filename"
     done
 
     #  Run all UNSAT tests
@@ -79,7 +93,7 @@ for hc_file in $HARD_CONSTRAINTS; do
         test_filename=$(basename "$unsat_test")
         clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$unsat_test" 2>/dev/null |
             grep -q "UNSATISFIABLE" &&
-            echo "  $test_filename [OK]" ||
-            echo "  $test_filename [FAIL]"
+            print_success "$test_filename" ||
+            print_fail "$test_filename"
     done
 done
