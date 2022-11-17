@@ -5,54 +5,38 @@ teacher/1(teacher name)
 teacher(profAAA).
 teacher(profBBB).
 
-teacher(profCCC).
-teacher(profDDD).
-
-
 %*
 course/4(course id, group_id, teacher name)
 -------------------------------------------
 *%
 course(mac111,45,profAAA).
-course(mac222,45,profBBB).
-
-course(mac333,66,profCCC).
-course(mac444,66,profDDD).
+course(mac333,66,profBBB).
 
 %*
 available/2(teacher name, period)
 ---------------------------------
 *%
 available(profAAA,211).
-available(profBBB,211).
+available(profAAA,411).
 
-available(profCCC,311).
-available(profDDD,311).
+available(profBBB,211).
+available(profBBB,311).
+available(profBBB,511).
 
 
 %*
 num_classes/2(course id, number of weekly courses)
 --------------------------------------------------
 *%
-num_classes(mac111,1).
-num_classes(mac222,1).
 
-num_classes(mac333,1).
-num_classes(mac444,1).
+num_classes(mac333,2).
+num_classes(mac111,2).
 
 
 %*
 obligatory/2(course id, ideal period)
 -------------------------------------
 *%
-obligatory(mac111,4).
+obligatory(mac333,4).
 
-obligatory(mac333,1).
-
-%*
-requiredElective/2(course id, curriculum)
-----------------------------------
-*%
-requiredElective(mac222,statistics).
-
-requiredElective(mac444,statistics).
+elective(mac111,4).
