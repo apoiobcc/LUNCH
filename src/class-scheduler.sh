@@ -12,6 +12,7 @@ MINIMIZE_SC="$CONSTRAINTS_DIR/minimize_sc.lp"
 PYTHON_OPS="$CONSTRAINTS_DIR/python_utils.lp"
 HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp")
 SOFT_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "sc*[0-9].lp")
+SC_METRICS="$CONSTRAINTS_DIR/sc_metrics.lp"
 INPUT="$BASE_DIR/input.lp"
 
 # Output type option values
@@ -78,4 +79,5 @@ clingo "$num_models" \
     "$BASIC_CONSTRAINTS" \
     $HARD_CONSTRAINTS \
     $SOFT_CONSTRAINTS \
-    "$INPUT" | python3 "$OUTPUT_PARSER" "$output_type"
+    $SC_METRICS \
+    "$INPUT"  | python3 "$OUTPUT_PARSER" "$output_type"
