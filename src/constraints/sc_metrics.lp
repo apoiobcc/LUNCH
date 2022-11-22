@@ -10,7 +10,7 @@
 weak/4(weight, priority, id, soft name)
 -------------------------------------------
 *%
-weak(W, P, Id, Soft) :- weak(W, P, Id), Soft = @get_soft_id(Id).
+weak(W, P, Id, Soft) :- weak(W, P, Id), Soft = @get_soft_name(Id).
 
 
 %*
