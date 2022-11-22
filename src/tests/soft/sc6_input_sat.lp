@@ -52,6 +52,6 @@ curriculum/2(course id, curriculum)
 -------------------------------------
 *%
 
-curriculum(mac111, systems).
-curriculum(mac333, systems).
-curriculum(mac555, systems).
+curriculum(mac111, systems,0).
+curriculum(mac333, systems,0).
+curriculum(mac555, systems,0).
