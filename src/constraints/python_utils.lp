@@ -12,8 +12,8 @@ def concat(*args):
     for i in args:
         s = str(i)
         s = s.replace('"','').replace("'","")
-        ans+= str(s)
-    return ans
+        ans+= str(s) + "."
+    return ans[0:-1]
 
 def calculate_weight_sc1(IDEAL1, IDEAL2):
     period1 = int(str(IDEAL1))
@@ -41,5 +41,10 @@ def calculate_weight_sc6(CUR):
     else:
         weight = 0
     return clingo.Number(weight)
+
+def get_soft_name(Id):
+    Id = str(Id).replace('"','').replace("'","")
+    return Id.split(".")[0]
+
 
 #end.
