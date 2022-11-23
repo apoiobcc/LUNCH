@@ -20,7 +20,7 @@ $ python3 parser-input-courses.py
 
 '''
 
-import sys
+from Clausule import clausule 
 import csv
 
 def parser(predicate, n_args, file_name):
@@ -33,22 +33,43 @@ def parser(predicate, n_args, file_name):
         csv_reader = csv.reader(csv_file, delimiter=',')
         clingo_input = ""
         for row in csv_reader:
-            atom = predicate + "("
-            for i in range(n_args-1):
-                atom += row[i].lower() + ","
-            atom += row[n_args-1].lower() + ")."
-            clingo_input += atom + "\n"
-    return clingo_input
+            cl = clausule(predicate, row[:n_args])
+            clingo_input += cl.assembleClausule() + "\n"
+    return clingo_input[:-1]
 	        
 def main():	
     arqs = [
             {   'predicate' : "curriculum",
-                'n_args' : 2,
+                'n_args' : 3,
                 'file_name' : "csv_input/Disciplinas - Trilhas.csv",
+            },
+            {   'predicate' : "curriculum",
+                'n_args' : 3,
+                'file_name' : "csv_input/Disciplinas - (Pos-Grad) Blocos.csv",
+            },
+            {   'predicate' : "highDemand",
+                'n_args' : 1,
+                'file_name' : "csv_input/Disciplinas - (Pos-Grad)Alta Demanda.csv",
+            },
+            {   'predicate' : "double",
+                'n_args' : 1,
+                'file_name' : "csv_input/Disciplinas - Dupla.csv",
+            },
+            {   'predicate' : "elective",
+                'n_args' : 2,
+                'file_name' : "csv_input/Disciplinas - Eletivas.csv",
+            },
+            {   'predicate' : "joint",
+                'n_args' : 2,
+                'file_name' : "csv_input/Disciplinas - Joint.csv",
             },
             {   'predicate' : "obligatory",
                 'n_args' : 2,
                 'file_name' : "csv_input/Disciplinas - Obrigatorias.csv",
+            },
+            {   'predicate' : "requiredElective",
+                'n_args' : 2,
+                'file_name' : "csv_input/Disciplinas - Optativas-Estat_Ciencia.csv",
             },
             {   'predicate' : "num_classes",
                 'n_args' : 2,
@@ -62,9 +83,9 @@ def main():
                 'n_args' : 1,
                 'file_name' : "csv_input/Disciplinas - Pos-Graduacao.csv",
             },
-            {   'predicate' : "curriculum",
-                'n_args' : 3,
-                'file_name' : "csv_input/Disciplinas - (Pos-Grad) Trilhas.csv",
+            {   'predicate' : "scope",
+                'n_args' : 2,
+                'file_name' : "csv_input/Disciplinas - (Pos-Grad) Areas.csv",
             }]
 
     for arq in arqs:

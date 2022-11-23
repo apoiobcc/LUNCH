@@ -12,17 +12,19 @@ Running:
 
 Create a directory named clingo_input_files 
 
-$ python3 parser-input-teacher-schedule.py
+$ python3 parser-input-teacher-schedule.py <file_name>
 
 '''
 
 import sys
 import csv
+from Clausule import clausule
 
 '''
 This list represents all periods codes that a class can be given
 '''
 ALLPERIODS = [11, 12, 21, 22]
+ALLDAYS = [100, 200, 300, 400, 500]
 
 def transformDay(d):
     '''
@@ -46,7 +48,7 @@ def transformPeriod(p):
     return 0
 
 def getTeacherName(email):
-    return email.split('@')[0].lower().replace('.', '')
+    return email.split('@')[0]
 
 def getDayHeader(header):
     return header.split('[')[1][:-1]
@@ -115,20 +117,22 @@ def assembleDayPredicate(predicate, teacher, periods):
         for hour in periods[day]:
             # get time code with day and period
             p = day + hour
-            assembled = assembled + (f'{predicate}({teacher},{p}).') + '\n'
+            assembled = assembled + clausule(predicate, [teacher, p]).assembleClausule() + '\n'
     return assembled
 
-def main():
-    file_name = sys.argv[1]
-    info = getTeacherSched(file_name)
+def getAvailablePreferable(info, noAnswer):
+    """
+        Receives a list of dictionaries containing the availability and preference of teachers
+        and the teachers who have not preferences or restrictions
+        Returns the ASP clasules of all teachers' availability and preferences in this order 
+    """
     available = ""
     preferable = ""
     for i in info:
         available = available + assembleDayPredicate("available", i['teacher'], i['available'])
         preferable = preferable + assembleDayPredicate("preference", i['teacher'], i['preference'])
-    with open(f"clingo_input_files/available{file_name[-8:-4]}.txt", 'a') as clingo_input_file:
-        clingo_input_file.write(available[:-1])
-    with open(f"clingo_input_files/preferable{file_name[-8:-4]}.txt", 'a') as clingo_input_file:
-        clingo_input_file.write(preferable[:-1])
-
-main()
+    for t in noAnswer:
+        for d in ALLDAYS:
+            for p in ALLPERIODS:
+                available = available + clausule("available", [t, d+p]).assembleClausule() + '\n'
+    return available[:-1], preferable[:-1]
