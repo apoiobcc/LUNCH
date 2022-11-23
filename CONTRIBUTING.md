@@ -7,21 +7,22 @@ Suggestions of change to this document are always welcome.
 ## Configuring the development environment
 
 Installation of a compatible [clingo](https://potassco.org/clingo/) solver and
-all of the Python dependencies can be done using [docker
+all of the Python dependencies can be done using
+[docker](https://www.docker.com/) and [docker
 compose](https://docs.docker.com/compose/). There are currently two relevant
 services, `dev` and `test`, that can be used to run a interactive shell in the
 preconfigured environment and to run the constraints unit test routine,
-respectively
+respectively.
 
 The following `bash` snippet runs a `bash` shell in the development environment:
 
 ```bash
-docker compose run --rm dev bash
+docker compose run --rm dev
 ```
 The following `bash` snippet runs all tests for the project:
 
 ```bash
-docker compose up test
+docker compose run --rm test
 ```
 
 ## Running the POC

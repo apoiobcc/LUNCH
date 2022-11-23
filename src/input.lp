@@ -112,9 +112,9 @@ course(mac0350,45,jef).
 num_classes(mac0350,2).
 obligatory(mac0350,3).
 
-course(mac0422,0,alan). % ?- graduation and postgrad course 
+course(mac0422,0,alan). % ?- graduation and postgrad course
 course(mac5753,0,alan).
-num_classes(mac0422,2). 
+num_classes(mac0422,2).
 num_classes(mac5753,2).
 postgrad(mac5753).
 obligatory(mac0422,3).
@@ -154,7 +154,7 @@ num_classes(mac0215,1).
 course(mac0218,0,alfredo).
 num_classes(mac0218,2).
 
-course(mac0219,0,alfredo). % ?- graduation and postgrad course 
+course(mac0219,0,alfredo). % ?- graduation and postgrad course
 num_classes(mac0219,2).
 course(mac5747,0,alfredo).
 num_classes(mac5747,2).
@@ -167,7 +167,7 @@ num_classes(mac0320,2).
 course(mac0327,0,coelho).
 num_classes(mac0327,2).
 
-course(mac0331,0,cris). % ?- graduation and postgrad course 
+course(mac0331,0,cris). % ?- graduation and postgrad course
 num_classes(mac0331,2).
 course(mac5747,0,cris).
 num_classes(mac5747,2).

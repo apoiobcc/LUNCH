@@ -34,52 +34,137 @@ SAT_VERIFICATION_PROG="$BASE_DIR/sat-answers-comparator.py"
 BASIC_CONSTRAINTS="$CONSTRAINTS_DIR/basic_constraints.lp"
 HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp" | sort)
 
+TEMP_RESULTS_FILE=$(mktemp "/tmp/class-scheduler-tests.XXXXXXX")
+TERMINAL_WIDTH=$(tput cols)
+
+COLOR_RED="\e[31m"
+COLOR_GREEN="\e[32m"
+COLOR_YELLOW="\e[33m"
+COLOR_CLEAR="\e[0m"
+
+# Repeat a string n times.
+# Args:
+#   $1 -> string to repeat
+#   $2 -> number of times to repeat
+print_repeat() {
+    for _ in $(seq 1 "$2"); do echo -n "$1"; done
+}
+
+# Pretty print SAT test failure
+# Args:
+#   $1 -> constraint number
+#   $2 -> test number
+#   $3 -> expected output file
+print_SAT_fail() {
+    echo -e "${COLOR_RED}FAIL: HC$1 SAT test $2 ${COLOR_CLEAR}"
+    echo "--- expected ---"
+    cat "$3"
+    echo "--- received ---"
+    # Print received without ASP header and footer
+    sed '1,3d' "$TEMP_RESULTS_FILE" | head -n -5
+    echo
+}
+
+# Pretty print UNSAT test failure
+# Args:
+#   $1 -> constraint number
+#   $2 -> test number
+print_UNSAT_fail() {
+    echo -e "${COLOR_RED}FAIL: HC$1 UNSAT test $2 ${COLOR_CLEAR}"
+    echo "--- clingo output ---"
+    cat "$TEMP_RESULTS_FILE"
+    echo
+}
+
+# Pretty print warnings
+# Args:
+#   $1 -> warning message
+warn() {
+    echo -e "${COLOR_YELLOW}WARN: $1${COLOR_CLEAR}"
+}
+
+########################
+##     START TESTS    ##
+########################
+HEADER_TEXT=" starting test session "
+print_repeat "=" $(((TERMINAL_WIDTH - ${#HEADER_TEXT}) / 2))
+echo -n "$HEADER_TEXT"
+print_repeat "=" $(((TERMINAL_WIDTH - ${#HEADER_TEXT}) / 2))
+echo
+
 ########################
 ##  HARD CONSTRAINTS  ##
 ########################
+hc_num_tests=0
+hc_num_failures=0
+hc_num_warns=0
+
 for hc_file in $HARD_CONSTRAINTS; do
-	constraint_num=$(echo "$hc_file" | grep -o '[0-9]\+')
-	test_dir="$HC_TEST_DIR/$constraint_num"
+    constraint_num=$(echo "$hc_file" | grep -o '[0-9]\+')
+    test_dir="$HC_TEST_DIR/$constraint_num"
 
-	echo "Testing HC$constraint_num:"
+    #  Run all SAT tests
+    sat_tests=$(find "$test_dir" -regex '[^u]*sat[0-9]*\.lp')
 
-	#  Run all SAT tests
-	sat_tests=$(find "$test_dir" -regex '[^u]*sat[0-9]*\.lp')
+    if [[ -z "$sat_tests" ]]; then
+        warn "no SAT test found for HC${constraint_num}."
+    fi
 
-	if [[ -z "$sat_tests" ]]; then
-		echo "  [WARN] no SAT test found"
-	fi
+    for sat_test in $sat_tests; do
+        hc_num_tests=$((hc_num_tests + 1))
+        test_filename=$(basename "$sat_test")
+        sat_test_num=$(echo "$test_filename" | grep -o '[0-9]\+')
+        expected_output="${test_dir}/sat_exp${sat_test_num}.txt"
+        if ! [[ -f "$expected_output" ]]; then
+            warn "no expected output file for SAT test of HC${constraint_num}."
+            hc_num_warns=$((hc_num_warns + 1))
+            continue
+        fi
 
-	for sat_test in $sat_tests; do
-		test_filename=$(basename "$sat_test")
-		sat_test_num=$(echo "$test_filename" | grep -o '[0-9]\+')
-		expected_output="${test_dir}/sat_exp${sat_test_num}.txt"
-		if ! [[ -f "$expected_output" ]]; then
-			echo "  [WARN] no expected output file for SAT test ${sat_test_num}"
-			continue
-		fi
+        # BUG: cannot detect when file is missing if one test is labeled sat.lp
+        # and other test is labeled sat1.lp
+        clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$sat_test" >"$TEMP_RESULTS_FILE" 2>/dev/null
 
-		# NOTE: cannot detect when file is missing if one test is labeled sat.lp
-		# and other test is labeled sat1.lp
-		clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$sat_test" 2>/dev/null |
-			python3 "$SAT_VERIFICATION_PROG" "$expected_output" |
-			grep -q "True" &&
-			echo "  $test_filename [OK]" ||
-			echo "  $test_filename [FAIL]"
-	done
+        python3 "$SAT_VERIFICATION_PROG" "$expected_output" <"$TEMP_RESULTS_FILE" |
+            grep -q "False" &&
+            hc_num_failures=$((hc_num_failures + 1)) &&
+            print_SAT_fail "$constraint_num" "$sat_test_num" "$expected_output"
+    done
 
-	#  Run all UNSAT tests
-	unsat_tests=$(find "$test_dir" -regex '.*unsat[0-9]*\.lp')
+    #  Run all UNSAT tests
+    unsat_tests=$(find "$test_dir" -regex '.*unsat[0-9]*\.lp')
 
-	if [[ -z "$unsat_tests" ]]; then
-		echo "  [WARN] no UNSAT test found"
-	fi
+    if [[ -z "$unsat_tests" ]]; then
+        warn "no UNSAT test found for HC${constraint_num}."
+    fi
 
-	for unsat_test in $unsat_tests; do
-		test_filename=$(basename "$unsat_test")
-		clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$unsat_test" 2>/dev/null |
-			grep -q "UNSATISFIABLE" &&
-			echo "  $test_filename [OK]" ||
-			echo "  $test_filename [FAIL]"
-	done
+    for unsat_test in $unsat_tests; do
+        hc_num_tests=$((hc_num_tests + 1))
+        test_filename=$(basename "$unsat_test")
+        clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$unsat_test" 2>/dev/null |
+            grep -q '^SATISFIABLE$' &&
+            hc_num_failures=$((hc_num_failures + 1)) &&
+            print_UNSAT_fail "$constraint_num" "$sat_test_num"
+    done
 done
+
+########################
+##    TESTS RESULTS   ##
+########################
+if [[ $hc_num_failures -eq 0 ]]; then
+    STATUS="${COLOR_GREEN}ok${COLOR_CLEAR}"
+else
+    STATUS="${COLOR_RED}fail${COLOR_CLEAR}"
+fi
+
+printf "test result: %b. %d total; %d passed; %d failed; %d malformed.\n" \
+    "$STATUS" $hc_num_tests $((hc_num_tests - hc_num_failures - hc_num_warns)) $hc_num_failures $hc_num_warns
+
+########################
+##      END TESTS     ##
+########################
+FOOTER_TEXT=" ending test session "
+print_repeat "=" $(((TERMINAL_WIDTH - ${#FOOTER_TEXT}) / 2))
+echo -n "$FOOTER_TEXT"
+print_repeat "=" $(((TERMINAL_WIDTH - ${#FOOTER_TEXT}) / 2))
+echo

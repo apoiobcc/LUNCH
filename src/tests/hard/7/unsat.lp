@@ -14,5 +14,4 @@ course/3(course id, group id, teacher name)
 *%
 course(macAAA, 1, profAAA).
 
-
 :- not class(macAAA,1,profAAA,112).

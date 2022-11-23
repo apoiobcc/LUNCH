@@ -1,4 +1,4 @@
-'''
+"""
 Clingo Output Parser
 ----------------------
 This program can parse the clingo output of the scheduling problem
@@ -18,27 +18,31 @@ $ python3 clingo-output-parser.py 2 < clingo-output-sat.txt
 
 Dependencies: tabulate
 
-'''
+"""
 
 import sys
 
 from clingo_output_support import *
 
+
 def main():
     arg = 0
-    if (len(sys. argv) > 1): arg = int(sys.argv[1])
+    if len(sys.argv) > 1:
+        arg = int(sys.argv[1])
     raw = sys.stdin.read()
     answers_list = parse_input(raw)
-    if (not answers_list): 
+    if not answers_list:
         print("UNSAT")
         return
     i = 1
     for a in answers_list:
         sched = make_sched(a)
-        head,body = make_table(sched)
-        if (arg % 2 == 0): print_table(f"Answer {i}", head,body)
-        if (arg > 0): make_csv_file(f'clingo-output{i}.csv',head, body)
+        head, body = make_table(sched)
+        if arg % 2 == 0:
+            print_table(f"Answer {i}", head, body)
+        if arg > 0:
+            make_csv_file(f"clingo-output{i}.csv", head, body)
         i += 1
 
-main()
 
+main()

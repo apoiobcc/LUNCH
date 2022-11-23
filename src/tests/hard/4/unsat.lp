@@ -4,7 +4,6 @@ teacher/1(teacher name)
 *%
 teacher(profAAA).
 
-
 %*
 course/3(course id, teacher name, number of weekly courses)
 ------------------------------------------------------------
@@ -16,6 +15,5 @@ available/2(teacher name, period)
 ---------------------------------
 *%
 available(profAAA,112).
-
 
 class(macAAA,1,profAAA,111).
