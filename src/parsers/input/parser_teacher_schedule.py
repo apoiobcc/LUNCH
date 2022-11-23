@@ -83,7 +83,7 @@ def getTeacherSched(file_name):
         for row in csv_reader:
             atom = dict()
             atom["teacher"] = getTeacherName(row[1])
-            atom["preference"] = dict()
+            atom["preferable"] = dict()
             atom["restriction"] = dict()
             # get teachers preferences
             for i in range(2, 7):
@@ -93,7 +93,7 @@ def getTeacherSched(file_name):
                     if transformPeriod(p) == 0:
                         continue
                     periods.append(transformPeriod(p))
-                atom["preference"][day] = periods
+                atom["preferable"][day] = periods
             # get teachers restrictions
             for i in range(7, 12):
                 day = transformDay(getDayHeader(headers[i]))
@@ -148,7 +148,7 @@ def getAvailablePreferable(info, noAnswer):
     preferable = ""
     for i in info:
         available = available + assembleDayPredicate("available", i['teacher'], i['available'])
-        preferable = preferable + assembleDayPredicate("preference", i['teacher'], i['preference'])
+        preferable = preferable + assembleDayPredicate("preferable", i['teacher'], i['preferable'])
     for t in noAnswer:
         for d in ALLDAYS:
             for p in ALLPERIODS:
