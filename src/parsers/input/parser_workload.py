@@ -15,31 +15,7 @@ For the courses with fixed time
 
 import csv
 from Clausule import Clausule
-
-PTIMESTAMP = ["08:00", "10:00", "14:00", "16:00"]
-PCODES = [11,12,21,22]
-PMAX = "18:00"
-
-def getDay(day):
-    return (100 * (int(day[0]) - 1))
-
-def getPeriod(period):
-    if period == '': return []
-    if not period[:2].isdigit():
-        period = '0' + period
-    if period in PTIMESTAMP:
-        return [PCODES[PTIMESTAMP.index(period)]]
-    for i in range(len(PTIMESTAMP)-1):
-        if PTIMESTAMP[i] < period and period < PTIMESTAMP[i+1]:
-            return [PCODES[i], PCODES[i+1]]
-    if period < PTIMESTAMP[0]:
-        return [PCODES[0]]
-    if period > PTIMESTAMP[-1] and period < PMAX:
-        return [PCODES[-1]]
-    # if it is not in a coded period, this class will not interfer in the scheduler
-    return []
-
-
+from Timecode import Timecode
 
 def getWorkload(file_name):
     '''
@@ -50,6 +26,7 @@ def getWorkload(file_name):
     '''
     with open(file_name) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
+        t = Timecode()
         # stores the courses without fixed class time (will be scheduled)
         notFixed = list()
         # stores the courses with fixed class time
@@ -69,8 +46,8 @@ def getWorkload(file_name):
                 else:
                     for time in row[4].split('e'):
                         time = time.strip().split(' ')
-                        day = getDay(time[0])
-                        period = getPeriod(time[1])
+                        day = t.getDayCode(time[0])
+                        period = t.getPeriodCode(time[1])
                         for p in period:
                             fixed.append(Clausule("class", [course, group, teacher, day+p]))
         return notFixed, fixed

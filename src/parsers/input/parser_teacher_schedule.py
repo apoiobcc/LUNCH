@@ -13,12 +13,8 @@ Clausules generated:
 """
 
 import csv
-from sqlite3 import Time
 from Clausule import Clausule
 from Timecode import Timecode
-"""
-This list represents all periods codes when a class can be given
-"""
 
 def getTeacherName(email):
     return email.split('@')[0]
