@@ -16,6 +16,6 @@ high_demand(mac5742). % Introdução à Computação Paralela e Distribuída
 high_demand(mac5760). % Introdução aos Sistemas de Bancos de Dados
 high_demand(mac5832). % Aprendizagem de Máquina: Modelos, Algoritmos e Aplicações 
 
-weak(3, 1, Id) :- class(C1, _, _, P), class(C2, _, _, P),
+weak(25, 1, Id) :- class(C1, _, _, P), class(C2, _, _, P),
               high_demand(C1), high_demand(C2),
               Id = @concat("sc8", C1, C2).
