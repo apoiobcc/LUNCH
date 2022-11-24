@@ -147,8 +147,7 @@ run_constraint_test(){
         
         else
 
-            clingo --opt-mode=optN --quiet=1 0 "$BASIC_CONSTRAINTS" "$c_file" "$PYTHON_UTILS" "$MINIMIZE_SC" "$REDUCE_OUT_FILE" "$sat_test"  > "$TEMP_RESULTS_FILE" 2>/dev/null
-        
+            clingo --opt-mode=optN --quiet=1 0 "$BASIC_CONSTRAINTS" $HARD_CONSTRAINTS "$c_file" "$PYTHON_UTILS" "$MINIMIZE_SC" "$REDUCE_OUT_FILE" "$sat_test"  > "$TEMP_RESULTS_FILE" 2>/dev/null
         fi
 
         python3 "$SAT_VERIFICATION_PROG" --expected "$expected_output" --clingo "$TEMP_RESULTS_FILE" --operation equal |
