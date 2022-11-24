@@ -2,7 +2,7 @@ import csv
 from parser_teacher_schedule import * 
 from parser_workload import * 
 
-teacher_sched_file = "csv_input/2s22.csv"
+teacher_sched_file = "csv_input/1s22.csv"
 TINDEX_SCHED = 1 # column containing teachers name in teachers schedule file
 workload_file = "csv_input/carga_expl.csv"
 TINDEX_WORKLOAD = 2 # column containing teachers name in workoad file
@@ -45,7 +45,7 @@ def teacherSched(file_name, noAnswer):
     with open(f"clingo_input_files/available{file_name[-8:-4]}.txt", 'a') as clingo_input_file:
         clingo_input_file.write(available)
     with open(f"clingo_input_files/preferable{file_name[-8:-4]}.txt", 'a') as clingo_input_file:
-        clingo_input_file.write(preferable[:-1])
+        clingo_input_file.write(preferable)
 
 def workload(file_name):
     notFixed, fixed = getWorkload(file_name)

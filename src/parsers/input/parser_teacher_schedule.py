@@ -17,7 +17,7 @@ $ python3 parser-input-teacher-schedule.py <file_name>
 """
 
 import csv
-from Clausule import clausule
+from Clausule import Clausule
 
 """
 This list represents all periods codes that a class can be given
@@ -135,7 +135,7 @@ def assembleDayPredicate(predicate, teacher, periods):
         for hour in periods[day]:
             # get time code with day and period
             p = day + hour
-            assembled = assembled + clausule(predicate, [teacher, p]).assembleClausule() + '\n'
+            assembled = assembled + Clausule(predicate, [teacher, p]).assembleClausule() + '\n'
     return assembled
 
 def getAvailablePreferable(info, noAnswer):
@@ -152,5 +152,5 @@ def getAvailablePreferable(info, noAnswer):
     for t in noAnswer:
         for d in ALLDAYS:
             for p in ALLPERIODS:
-                available = available + clausule("available", [t, d+p]).assembleClausule() + '\n'
+                available = available + Clausule("available", [t, d+p]).assembleClausule() + '\n'
     return available[:-1], preferable[:-1]

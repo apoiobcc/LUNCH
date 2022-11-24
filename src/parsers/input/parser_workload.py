@@ -17,7 +17,7 @@ $ python3 parser-input-workload.py <file_name>
 '''
 
 import csv
-from Clausule import clausule
+from Clausule import Clausule
 
 PTIMESTAMP = ["08:00", "10:00", "14:00", "16:00"]
 PCODES = [11,12,21,22]
@@ -65,14 +65,14 @@ def getWorkload(file_name):
                 teacher = row[2]
                 # semeste = int(row[2][0])
                 if (int(row[3]) == 1):
-                    notFixed.append(clausule("course", [course, group, teacher]))
+                    notFixed.append(Clausule("course", [course, group, teacher]))
                 else:
                     for time in row[4].split('e'):
                         time = time.strip().split(' ')
                         day = getDay(time[0])
                         period = getPeriod(time[1])
                         for p in period:
-                            fixed.append(clausule("class", [course, group, teacher, day+p]))
+                            fixed.append(Clausule("class", [course, group, teacher, day+p]))
         return notFixed, fixed
 
 def assembleWorkload(list):

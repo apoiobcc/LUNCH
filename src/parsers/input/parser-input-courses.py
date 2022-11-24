@@ -20,7 +20,7 @@ $ python3 parser-input-courses.py
 
 """
 
-from Clausule import clausule 
+from Clausule import Clausule 
 import csv
 import sys
 
@@ -35,7 +35,7 @@ def parser(predicate, n_args, file_name):
         csv_reader = csv.reader(csv_file, delimiter=",")
         clingo_input = ""
         for row in csv_reader:
-            cl = clausule(predicate, row[:n_args])
+            cl = Clausule(predicate, row[:n_args])
             clingo_input += cl.assembleClausule() + "\n"
     return clingo_input[:-1]
 	        
