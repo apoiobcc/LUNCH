@@ -1,26 +1,22 @@
 """
 Clingo Input Teachers Schedule Parser (Semestral)
 ----------------------
-This program can parse a given csv files containing the restrictions and preferences for each teacher.
-Input: path to csv file containing the information.
-Output: files containing asp clausules for the availability and preferable times of the teachers
-The names of each file will be the predicate name and semester/year.
-(Ex: input file = 2s22.csv, output file = available2s22.txt and preferable2s22.txt)
-If the file already exists, it will append the new information.
+This collection of functions can parse a given csv file containing the restrictions and preferences 
+times for each teacher in the semester.
 
-Running:
+Columns expected in the csv file:
+Timestamp|teacher_username@email|(2-6)Preferences[Day of the Week]|(7-11)Restrictions[Day of the Week]
 
-Create a directory named clingo_input_files
-
-$ python3 parser-input-teacher-schedule.py <file_name>
-
+Clausules generated:
+- available/2(teacher_id, period_code)
+- preferable/2(teacher_id, period_code)
 """
 
 import csv
 from Clausule import Clausule
 
 """
-This list represents all periods codes that a class can be given
+This list represents all periods codes when a class can be given
 """
 ALLPERIODS = [11, 12, 21, 22]
 ALLDAYS = [100, 200, 300, 400, 500]
@@ -141,7 +137,7 @@ def assembleDayPredicate(predicate, teacher, periods):
 def getAvailablePreferable(info, noAnswer):
     """
         Receives a list of dictionaries containing the availability and preference of teachers
-        and the teachers who have not preferences or restrictions
+        and a list of teachers who have not preferences or restrictions
         Returns the ASP clasules of all teachers' availability and preferences in this order 
     """
     available = ""

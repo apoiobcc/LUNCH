@@ -1,19 +1,16 @@
 '''
 Clingo Input Workload Parser (Semestral)
 ----------------------
-This program can parse a given csv files containing the years workload (teacher-course relation).
-Input: path to csv file containing the information.
-Output: file containing asp clausules for the course predicate  
-The names of each file will be the predicate name and semester/year.
-(Ex: input file = 2023.csv, output file = course1s22.txt and course2s22.txt)
-If the file already exists, it will append the new information.
+This colection of functions can parse a given csv files containing the semester workload.
 
-Running: 
+Columns expected in the csv file: 
+Cours code|Group|Teacher Username|Should Be Scheduled (1-Yes, 0-No)|Time Scheduled (Should Be Scheduled = 0)
 
-Create a directory named clingo_input_files 
-
-$ python3 parser-input-workload.py <file_name>
-
+Clasules generated:
+- course/3(course id, group id, teacher id)
+For the courses that should be scheduled
+- class/4(course id, group id, teacher, period)
+For the courses with fixed time
 '''
 
 import csv
@@ -34,8 +31,11 @@ def getPeriod(period):
     for i in range(len(PTIMESTAMP)-1):
         if PTIMESTAMP[i] < period and period < PTIMESTAMP[i+1]:
             return [PCODES[i], PCODES[i+1]]
+    if period < PTIMESTAMP[0]:
+        return [PCODES[0]]
     if period > PTIMESTAMP[-1] and period < PMAX:
         return [PCODES[-1]]
+    # if it is not in a coded period, this class will not interfer in the scheduler
     return []
 
 
@@ -49,7 +49,9 @@ def getWorkload(file_name):
     '''
     with open(file_name) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
+        # stores the courses without fixed class time (will be scheduled)
         notFixed = list()
+        # stores the courses with fixed class time
         fixed = list()
         # get header
         for row in csv_reader:
@@ -59,11 +61,8 @@ def getWorkload(file_name):
             if (row[0] == ""): continue
             courses = row[0].split('/')
             for course in courses:
-                # if course[0].isdigit(): atom['course'] = 'mac'+ course
-                # course = course
                 group = row[1]
                 teacher = row[2]
-                # semeste = int(row[2][0])
                 if (int(row[3]) == 1):
                     notFixed.append(Clausule("course", [course, group, teacher]))
                 else:
