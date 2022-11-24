@@ -1,0 +1,3 @@
+class(mac111,45,profAAA,211) class(mac111,45,profAAA,311) class(mac222,45,profBBB,211) class(mac333,45,profCCC,411)
+
+class(mac111,45,profAAA,311) class(mac111,45,profAAA,411) class(mac222,45,profBBB,211) class(mac333,45,profCCC,411) 
