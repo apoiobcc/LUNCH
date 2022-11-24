@@ -13,46 +13,12 @@ Clausules generated:
 """
 
 import csv
+from sqlite3 import Time
 from Clausule import Clausule
-
+from Timecode import Timecode
 """
 This list represents all periods codes when a class can be given
 """
-ALLPERIODS = [11, 12, 21, 22]
-ALLDAYS = [100, 200, 300, 400, 500]
-
-
-def transformDay(d):
-    """
-    Function that transforms a day in its code
-    """
-    if d == "Segunda":
-        return 100
-    if d == "Terça":
-        return 200
-    if d == "Quarta":
-        return 300
-    if d == "Quinta":
-        return 400
-    if d == "Sexta":
-        return 500
-    return 0
-
-
-def transformPeriod(p):
-    """
-    Function that transforms a period in its code
-    """
-    if p.startswith("08"):
-        return 11
-    if p.startswith("10"):
-        return 12
-    if p.startswith("14"):
-        return 21
-    if p.startswith("16"):
-        return 22
-    return 0
-
 
 def getTeacherName(email):
     return email.split('@')[0]
@@ -71,6 +37,7 @@ def getTeacherSched(file_name):
     """
     with open(file_name) as csv_file:
         infos = list()
+        t = Timecode()
         csv_reader = csv.reader(csv_file, delimiter=",")
         # get header
         for row in csv_reader:
@@ -83,21 +50,21 @@ def getTeacherSched(file_name):
             atom["restriction"] = dict()
             # get teachers preferences
             for i in range(2, 7):
-                day = transformDay(getDayHeader(headers[i]))
+                day = t.getDayCode(getDayHeader(headers[i]))
                 periods = list()
                 for p in row[i].split(";"):
-                    if transformPeriod(p) == 0:
+                    if t.getPeriodCode(p[:5]) == []:
                         continue
-                    periods.append(transformPeriod(p))
+                    periods.append(t.getPeriodCode(p[:5])[0])
                 atom["preferable"][day] = periods
             # get teachers restrictions
             for i in range(7, 12):
-                day = transformDay(getDayHeader(headers[i]))
+                day = t.getDayCode(getDayHeader(headers[i]))
                 periods = list()
                 for p in row[i].split(";"):
-                    if transformPeriod(p) == 0:
+                    if t.getPeriodCode(p[:5]) == []:
                         continue
-                    periods.append(transformPeriod(p))
+                    periods.append(t.getPeriodCode(p[:5])[0])
                 atom["restriction"][day] = periods
             # get teachers availability
             atom["available"] = availablePeriod(atom["restriction"])
@@ -111,9 +78,10 @@ def availablePeriod(restriction):
     Returns a dictonary with the times not restricted
     """
     available = dict()
+    t = Timecode()
     for key in restriction.keys():
         periods = list()
-        for p in ALLPERIODS:
+        for p in t.getAllPeriodCodes():
             periods.append(p)
         for p in restriction[key]:
             periods.remove(p)
@@ -140,13 +108,14 @@ def getAvailablePreferable(info, noAnswer):
         and a list of teachers who have not preferences or restrictions
         Returns the ASP clasules of all teachers' availability and preferences in this order 
     """
+    t = Timecode()
     available = ""
     preferable = ""
     for i in info:
         available = available + assembleDayPredicate("available", i['teacher'], i['available'])
         preferable = preferable + assembleDayPredicate("preferable", i['teacher'], i['preferable'])
-    for t in noAnswer:
-        for d in ALLDAYS:
-            for p in ALLPERIODS:
-                available = available + Clausule("available", [t, d+p]).assembleClausule() + '\n'
+    for teacher in noAnswer:
+        for d in t.getAllDayCodes():
+            for p in t.getAllPeriodCodes():
+                available = available + Clausule("available", [teacher, d+p]).assembleClausule() + '\n'
     return available[:-1], preferable[:-1]

@@ -86,6 +86,6 @@ def main():
 
     noAnswer = getNoAnswerTeachers(teacher_sched_file, workload_file)
     teacherSched(teacher_sched_file, noAnswer)
-    workload(workload_file)
+    # workload(workload_file)
 
 main()

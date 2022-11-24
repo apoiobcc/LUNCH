@@ -22,7 +22,6 @@ $ python3 parser-input-courses.py
 
 from Clausule import Clausule 
 import csv
-import sys
 
 
 def parser(predicate, n_args, file_name):

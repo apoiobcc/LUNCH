@@ -24,6 +24,7 @@ def getDay(day):
     return (100 * (int(day[0]) - 1))
 
 def getPeriod(period):
+    if period == '': return []
     if not period[:2].isdigit():
         period = '0' + period
     if period in PTIMESTAMP:

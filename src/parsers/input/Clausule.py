@@ -1,8 +1,8 @@
 """
-    Class Clausule
-    ------------------
-    Deals with the transformation for the ASP clausules format.
-    A clausule is composed of one predicate and its arguments.
+Class Clausule
+------------------
+Deals with the transformation for the ASP clausules format.
+A clausule is composed of one predicate and its arguments.
 """
 
 class Clausule:
