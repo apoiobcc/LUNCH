@@ -125,8 +125,8 @@ for hc_file in $HARD_CONSTRAINTS; do
         # and other test is labeled sat1.lp
         clingo 0 "$BASIC_CONSTRAINTS" "$hc_file" "$sat_test" >"$TEMP_RESULTS_FILE" 2>/dev/null
 
-        python3 "$SAT_VERIFICATION_PROG" "$expected_output" <"$TEMP_RESULTS_FILE" |
-            grep -q "False" &&
+        python3 "$SAT_VERIFICATION_PROG" --expected "$expected_output" --clingo "$TEMP_RESULTS_FILE" --operation equal |
+            grep -v "True" &&
             hc_num_failures=$((hc_num_failures + 1)) &&
             print_SAT_fail "$constraint_num" "$sat_test_num" "$expected_output"
     done
