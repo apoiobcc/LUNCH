@@ -34,11 +34,14 @@ def calculate_weight_sc2(IDEAL1, IDEAL2):
     weight = 20//difference
     return clingo.Number(weight)
 
-def calculate_weight_sc6(CUR):
-    curriculum = str(CUR)
-    if (curriculum == 'theory'):
+def calculate_weight_sc6(CUR1, CUR2):
+    curriculum1 = str(CUR1)
+    curriculum2 = str(CUR2)
+    if (curriculum1 != curriculum2):
+        weight = 25
+    elif (curriculum1 == 'pos_theory'):
         weight = 15
-    elif (curriculum == 'systems'):
+    elif (curriculum1 == 'pos_systems'):
         weight = 10
     else:
         weight = 0
