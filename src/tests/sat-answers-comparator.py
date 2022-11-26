@@ -7,7 +7,14 @@ If the operation is "contains", the program compares both and decides if the exp
 Input: clingo output and the expected output
 Output: True or false
 
-Running Example
+Expected file format:
+	$ cat soft/5/sat_exp.txt
+	class(mac111,45,profAAA,211) class(mac111,45,profAAA,311) class(mac222,45,profBBB,211) class(mac333,45,profCCC,411)
+
+	class(mac111,45,profAAA,311) class(mac111,45,profAAA,411) class(mac222,45,profBBB,211) class(mac333,45,profCCC,411)  
+	$
+
+Running Example:
 $ python sat-answers-comparator.py --expected hc1_expected_input_sat.txt --clingo clingo_output_hc1.txt --operation equal
 To run the tests
 $ python3 sat-answers-comparator.py --test
@@ -22,6 +29,8 @@ def parse_clingo_input(raw):
     '''
     Separate each answer (from clingo) and returns a list with all classes scheduled
     If no answer is found, returns False
+    Args:
+    	raw: input directly from clingo output
     '''
     
     parsed = raw.split("Answer: ")
@@ -38,6 +47,9 @@ def parse_clingo_input(raw):
 def equal_answers(clingo,expected):
 	'''
 		Return true if answers are equal
+		Args:
+			clingo: clingo list of answers
+			expected: expected list of answers
 	'''
 	clingo_set = create_set(clingo)
 	expected_set = create_set(expected)
@@ -46,6 +58,9 @@ def equal_answers(clingo,expected):
 def contains(clingo,expected):
 	'''
 		Return true if the clingo answer contains the expected answer
+		Args:
+			clingo: clingo list of answers
+			expected: expected list of answers
 	'''
 	clingo_set = create_set(clingo)
 	if len(expected) == 0 and len(clingo) != 0: return False
@@ -57,6 +72,8 @@ def contains(clingo,expected):
 def create_set(answer):
 	'''
 		Create the set representation of an answer
+		Args:
+			answer: list of predicates
 	'''
 	answer_set = set()
 	for i in range(0,len(answer)):
@@ -67,6 +84,8 @@ def parse_expected_input(raw):
     '''
     Separate each answer (from expected output) and return a list with all classes scheduled
     If no answer is found, return False
+    Args:
+    	raw: input directly from expected answers file
     '''
     parsed = raw.split("\n\n")
     if (not parsed): return False
@@ -167,6 +186,7 @@ class TestClassContainsOp(unittest.TestCase):
 
 def print_usage():
 	print("Usage: python sat-answers-comparator.py --expected {EXPECTED ANSWERS FILE} --clingo {CLINGO ANSWERS FILE} --operation {equal,contains} --test {to run the tests}")
+	sys.exit(2)
 
 class MyParser():
     '''
@@ -179,7 +199,7 @@ class MyParser():
         parser.add_argument('--expected',help='expected answer file')
         parser.add_argument('--clingo',help='clingo answer file')
         parser.add_argument('--operation',help='operations possible: equals,contains')
-        parser.add_argument('--test',action='store_true',default=False)
+        parser.add_argument('--test',action='store_true',default=False,help='run the tests')
         self.args = ''
         try:
             self.args = parser.parse_args()
@@ -211,7 +231,6 @@ def main():
 
 	if CLINGO_FILE == None or EXPECTED_FILE == None or OPERATION == None:
 		print_usage()
-		quit()
 
 	try:
 		raw = open(CLINGO_FILE,"r").read()
