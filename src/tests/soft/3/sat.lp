@@ -11,12 +11,12 @@ teacher(profDDD).
 course/3(course id, group_id, teacher name, number of weekly courses)
 ------------------------------------------------------------
 *%
-course(macAAA, 1, profAAA, 1).
-course(macBBB, 1, profAAA, 1).
-course(macCCC, 1, profBBB, 1).
-course(macDDD, 1, profBBB, 1).
-course(macEEE, 1, profCCC, 1).
-course(macFFF, 1, profDDD, 1).
+course(mac111, 1, profAAA).
+course(mac222, 1, profAAA).
+course(mac333, 1, profBBB).
+course(mac444, 1, profBBB).
+course(mac555, 1, profCCC).
+course(mac666, 1, profDDD).
 
 %*
 available/2(teacher name, period)
@@ -30,13 +30,23 @@ available(profCCC, 211).
 available(profDDD, 211).
 
 %*
+num_classes/2(course id, number of weekly courses)
+--------------------------------------------------
+*%
+num_classes(mac111, 1).
+num_classes(mac222, 1).
+num_classes(mac333, 1).
+num_classes(mac444, 1).
+num_classes(mac555, 1).
+num_classes(mac666, 1).
+
+%*
 curriculum/3(course id, curriculum, isRequired)
 -----------------------------------
-Identifies a course as part of a curriculum.
 *%
-curriculum(macAAA,systems,1).
-curriculum(macCCC,systems,1).
-curriculum(macBBB,ai,1).
-curriculum(macDDD,ai,1).
-curriculum(macEEE,ai,0).
-curriculum(macFFF,ai,1).
+curriculum(mac111,systems,1).
+curriculum(mac333,systems,1).
+curriculum(mac222,ai,1).
+curriculum(mac444,ai,1).
+curriculum(mac555,ai,1).
+curriculum(mac666,ai,1).
