@@ -22,8 +22,8 @@ available(profAAA,211).
 available(profAAA,411).
 
 available(profBBB,211).
+available(profBBB,411).
 available(profBBB,511).
-available(profBBB,311).
 
 available(profCCC,311).
 available(profCCC,411).
@@ -53,5 +53,5 @@ curriculum/3(course id, curriculum, isRequired)
 *%
 
 curriculum(mac111, pos_systems, 1).
-curriculum(mac333, pos_theory, 0).
-curriculum(mac555, pos_theory, 1).
+curriculum(mac333, pos_systems, 0).
+curriculum(mac555, pos_systems, 1).
