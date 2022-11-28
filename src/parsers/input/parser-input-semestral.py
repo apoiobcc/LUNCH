@@ -22,38 +22,6 @@ import csv, sys
 from parser_teacher_schedule import * 
 from parser_workload import * 
 
-def getNoAnswerTeachers(teacher_sched_file, workload_file):
-    """
-        Return the names of the teachers who are not in the schedule file
-        Before using this function, set the global variables
-            teacher_sched_file : file with the teachers schedule
-            TINDEX_SCHED : column containing teachers email in teachers schedule file
-            workload_file : file containing the workload for the semester
-            TINDEX_WORKLOAD : : column containing teachers username in teachers schedule file
-    """
-    with open(teacher_sched_file) as t_csv:
-            teachers1 = set()
-            csv_reader = csv.reader(t_csv, delimiter=',')
-            # get header
-            for row in csv_reader:
-                headers = row
-                break
-            for row in csv_reader:
-                teacher = row[1].split('@')[0]
-                teachers1.update((teacher,))
-
-    with open(workload_file) as w_csv:
-            teachers2 = set()
-            csv_reader = csv.reader(w_csv, delimiter=',')
-            # get header
-            for row in csv_reader:
-                headers = row
-                break
-            for row in csv_reader:
-                teacher = row[2]
-                teachers2.update((teacher,))
-    return list(teachers2.difference(teachers1))
-
 def teacherSched(file_name, noAnswer):
     """
         Given the csv schedule file and list of no answer teachers,
