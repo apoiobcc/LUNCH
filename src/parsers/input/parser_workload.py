@@ -49,7 +49,7 @@ def getWorkload(file_name):
                         day = t.getDayCode(time[0])
                         period = t.getPeriodCode(time[1])
                         for p in period:
-                            fixed.append(Clausule("class", [course, group, teacher, day+p]))
+                            fixed.append(Clausule(":- not class", [course, group, teacher, day+p]))
         return notFixed, fixed
 
 def assembleWorkload(list):
