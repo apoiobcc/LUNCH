@@ -29,7 +29,7 @@ class/4(course id, group id, teacher, period)
 Schedule N classes of a given course, considering the teachers available
 periods. A class represents a cell in the schedule.
 *%
-{ class(C, G, T, P) : available(T, P) } == N :- course(C, G, T, N).
+{ class(C, G, T, P) : available(T, P,_) } == N :- course(C, G, T, N).
 
 %*
 conflict/5(first course id, first course group, second course id, second course grouyp, period)
@@ -56,4 +56,3 @@ Indicates classes that are lectured together, normally one from graduation and o
 *%
 
 joint(C1,C2) :- joint(C2,C1).
-

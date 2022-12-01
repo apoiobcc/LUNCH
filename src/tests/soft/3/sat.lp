@@ -19,15 +19,15 @@ course(mac555, 1, profCCC).
 course(mac666, 1, profDDD).
 
 %*
-available/2(teacher name, period)
+available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
-available(profAAA, 111).
-available(profAAA, 211).
-available(profBBB, 111).
-available(profBBB, 211).
-available(profCCC, 211).
-available(profDDD, 211).
+available(profAAA, 111, 0).
+available(profAAA, 211, 0).
+available(profBBB, 111, 0).
+available(profBBB, 211, 0).
+available(profCCC, 211, 0).
+available(profDDD, 211, 0).
 
 %*
 num_classes/2(course id, number of weekly courses)

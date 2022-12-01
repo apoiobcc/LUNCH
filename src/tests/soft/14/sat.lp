@@ -17,7 +17,7 @@ num_classes(macFFF, 2).
 num_classes(macMMM, 2).
 
 %*
-available/2(teacher name, period, preferable)
+available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
 
@@ -27,7 +27,6 @@ available(profFFF, 411, 1).
 available(profFFF, 121, 0).
 available(profFFF, 311, 0).
 
-num_classes(macMMM, 2).
 available(profMMM, 111, 1).
 available(profMMM, 321, 0).
 available(profMMM, 411, 0).

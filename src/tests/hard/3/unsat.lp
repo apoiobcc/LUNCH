@@ -16,11 +16,11 @@ course/3(course id, teacher name, number of weekly courses)
 course(macAAA, 1, profAAA, n).
 
 %*
-available/2(teacher name, period)
+available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
-available(profAAA, 111).
-available(profAAA, 211).
-available(profAAA, 311).
+available(profAAA, 111, 0).
+available(profAAA, 211, 0).
+available(profAAA, 311, 0).
 
 :- {class(macAAA, 1, profAAA,_): } == n.
