@@ -151,7 +151,7 @@ run_constraint_test(){
         fi
 
         python3 "$SAT_VERIFICATION_PROG" --expected "$expected_output" --clingo "$TEMP_RESULTS_FILE" --operation equal |
-            grep -v "True" &&
+            grep -q -v "True" &&
             c_num_failures=$((c_num_failures + 1)) &&
             print_SAT_fail "$constraint_num" "$sat_test_num" "$expected_output" $c_label
     done
