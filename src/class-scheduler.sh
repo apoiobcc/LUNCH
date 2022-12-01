@@ -15,6 +15,8 @@ SOFT_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "sc*[0-9].lp")
 SC_METRICS="$CONSTRAINTS_DIR/sc_metrics.lp"
 INPUT="$BASE_DIR/input.lp"
 
+CLINGO_FLAGS=("--quiet=1" "--opt-mode=optN")
+
 # Output type option values
 OUTPUT_TABLE=0
 OUTPUT_CSV=1
@@ -73,7 +75,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Runs the clingo interpreter
-clingo "$num_models" \
+clingo "${CLINGO_FLAGS[@]}" "$num_models" \
     "$MINIMIZE_SC" \
     "$PYTHON_OPS" \
     "$BASIC_CONSTRAINTS" \
