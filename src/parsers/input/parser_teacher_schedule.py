@@ -39,7 +39,7 @@ def getNoAnswerTeachers(teacher_sched_file, workload_file):
                 headers = row
                 break
             for row in csv_reader:
-                teacher = row[1].split('@')[0]
+                teacher = row[1].split('@')[0].strip()
                 teachers1.update((teacher,))
 
     with open(workload_file) as w_csv:
@@ -50,7 +50,7 @@ def getNoAnswerTeachers(teacher_sched_file, workload_file):
                 headers = row
                 break
             for row in csv_reader:
-                teacher = row[2]
+                teacher = row[2].strip()
                 teachers2.update((teacher,))
     return list(teachers2.difference(teachers1))
 
@@ -73,7 +73,7 @@ def getTeacherSched(file_name):
         for row in csv_reader:
             atom = dict()
             atom["teacher"] = getTeacherName(row[1])
-            atom["preferable"] = dict()
+            atom["preferable"] = []
             atom["restriction"] = dict()
             # get teachers preferences
             for i in range(2, 7):
@@ -82,8 +82,7 @@ def getTeacherSched(file_name):
                 for p in row[i].split(";"):
                     if t.getPeriodCode(p[:5]) == []:
                         continue
-                    periods.append(t.getPeriodCode(p[:5])[0])
-                atom["preferable"][day] = periods
+                    atom["preferable"].append(t.getPeriodCode(p[:5])[0] + day)
             # get teachers restrictions
             for i in range(7, 12):
                 day = t.getDayCode(getDayHeader(headers[i]))
@@ -104,7 +103,7 @@ def availablePeriod(restriction):
     Given the restriction times dictionary
     Returns a dictonary with the times not restricted
     """
-    available = dict()
+    available = []
     t = Timecode()
     for key in restriction.keys():
         periods = list()
@@ -112,21 +111,20 @@ def availablePeriod(restriction):
             periods.append(p)
         for p in restriction[key]:
             periods.remove(p)
-        available[key] = periods
+        for p in periods:
+            available.append(p+key)
     return available
 
 
-def assembleDayPredicate(predicate, teacher, periods):
+def assembleDayPredicate(predicate, teacher, aval, pref):
     """
     Assembles asp clausules given the predicate, first argument(teacher) and
     a list of the second arguments
     """
     assembled = ""
-    for day in periods.keys():
-        for hour in periods[day]:
-            # get time code with day and period
-            p = day + hour
-            assembled = assembled + Clausule(predicate, [teacher, p]).assembleClausule() + '\n'
+    for p in aval:
+        preferable = 1 if p in pref else 0
+        assembled = assembled + Clausule(predicate, [teacher, p, preferable]).assembleClausule() + '\n'
     return assembled
 
 def getAvailablePreferable(info, noAnswer):
@@ -137,12 +135,10 @@ def getAvailablePreferable(info, noAnswer):
     """
     t = Timecode()
     available = ""
-    preferable = ""
     for i in info:
-        available = available + assembleDayPredicate("available", i['teacher'], i['available'])
-        preferable = preferable + assembleDayPredicate("preferable", i['teacher'], i['preferable'])
+        available = available + assembleDayPredicate("available", i['teacher'], i['available'], i['preferable'])
     for teacher in noAnswer:
         for d in t.getAllDayCodes():
             for p in t.getAllPeriodCodes():
-                available = available + Clausule("available", [teacher, d+p]).assembleClausule() + '\n'
-    return available[:-1], preferable[:-1]
+                available = available + Clausule("available", [teacher, d+p, 0]).assembleClausule() + '\n'
+    return available[:-1]

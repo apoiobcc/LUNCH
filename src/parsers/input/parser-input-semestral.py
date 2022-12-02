@@ -28,11 +28,9 @@ def teacherSched(file_name, noAnswer):
         Creates the ASP clausules: available and preferable
     """
     info = getTeacherSched(file_name)
-    available, preferable = getAvailablePreferable(info, noAnswer)
+    available = getAvailablePreferable(info, noAnswer)
     with open(f"clingo_input_files/available.txt", 'a') as clingo_input_file:
         clingo_input_file.write(available)
-    with open(f"clingo_input_files/preferable.txt", 'a') as clingo_input_file:
-        clingo_input_file.write(preferable)
 
 def workload(file_name):
     """
