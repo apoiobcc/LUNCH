@@ -17,11 +17,11 @@ class TestTimecode:
     def setup_class(self):
         self.t = Timecode()
 
-    def test_getPeriodCode_unit(self):
+    def test_getPeriodCode_array(self):
         ans = []
-        for i in ["9:00","12:00","21:00","18:00"]:
+        for i in ["9:20","12:00","21:00","18:00", "21:20", "13:00", "7:30"]:
             ans.append(self.t.getPeriodCode(i))
-        assert ans == [[11,12],[12,21],[],[22]]
+        assert ans == [[11,12],[],[],[], [], [21], [11]]
 
     def test_getPeriodCode_unit(self):
         ans = []
@@ -43,9 +43,9 @@ class TestTimecode:
 
     def test_getDayCode_byName(self):
         ans = []
-        for i in ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]:
+        for i in ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sab", "Dom"]:
             ans.append(self.t.getDayCode(i))
-        assert ans == [100,200,300,400,500]
+        assert ans == [100,200,300,400,500, 0, 0]
     
     def test_getDayName(self):
         s = self.t.getDayName(100)

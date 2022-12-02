@@ -17,6 +17,12 @@ import csv
 from Clausule import Clausule
 from Timecode import Timecode
 
+def getGroup(course):
+    print(course)
+    if course[3] != '0': return "BCC-pos"
+    return "BCC"
+
+
 def getWorkload(file_name):
     '''
         Receives the workload csv table 
@@ -39,17 +45,19 @@ def getWorkload(file_name):
             if (row[0] == ""): continue
             courses = row[0].split('/')
             for course in courses:
-                group = row[1]
-                teacher = row[2]
-                if (int(row[3]) == 1):
+                group = row[2] if row[2] else getGroup(course)
+                teacher = row[7].split('@')[0]
+                fixed_time = row[5]
+                if (fixed_time == ''):
                     notFixed.append(Clausule("course", [course, group, teacher]))
                 else:
-                    for time in row[4].split('e'):
+                    for time in fixed_time.split('e'):
                         time = time.strip().split(' ')
                         day = t.getDayCode(time[0])
-                        period = t.getPeriodCode(time[1])
-                        for p in period:
-                            fixed.append(Clausule(":- not class", [course, group, teacher, day+p]))
+                        if day != 0:
+                            period = t.getPeriodCode(time[1].split('-')[0])
+                            for p in period:
+                                fixed.append(Clausule(":- not class", [course, group, teacher, day+p]))
         return notFixed, fixed
 
 def assembleWorkload(list):

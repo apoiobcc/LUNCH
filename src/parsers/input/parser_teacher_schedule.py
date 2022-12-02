@@ -50,7 +50,7 @@ def getNoAnswerTeachers(teacher_sched_file, workload_file):
                 headers = row
                 break
             for row in csv_reader:
-                teacher = row[2].strip()
+                teacher = row[7].split('@')[0].strip()
                 teachers2.update((teacher,))
     return list(teachers2.difference(teachers1))
 
