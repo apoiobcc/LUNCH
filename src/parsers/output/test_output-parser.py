@@ -8,10 +8,11 @@ class TestOutputParser:
     def setup_class(self):
         with open("clingo-output-sat.txt") as f:
             raw = f.read()
-            answers_list = parse_input(raw)
+            answers_struct = parse_input(raw)
+            answers_list = answers_struct["Answers"]
             self.sat_answers = []
             for a in answers_list:
-                sched = make_sched(a)
+                sched = make_sched(a["Answer"])
                 head, body = make_table(sched)
                 self.sat_answers.append((head, body))
 

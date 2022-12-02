@@ -5,7 +5,8 @@ from tabulate import tabulate
 
 def parse_input(raw):
     """
-    Separate each answer and returns a list with all classes scheduled
+    Separate each answer and returns a dict with: a list with all classes scheduled
+    (this list contains, for each answer, its predicates and its optimization number) and clingo execution time.
     If no answer is found, returns False
     """
 
@@ -14,13 +15,25 @@ def parse_input(raw):
 
     # no answers
     if not parsed:
-        return False
+        return {"Answers":False,"Time":""}
 
+    exec_time = ""
     answers_list = list()
+    answers_struct = {"Answers":answers_list}
+
     for p in parsed:
         answer = p.split("\n")
-        answers_list.append(answer[1])
-    return answers_list
+        if len(answer)-3 >= 0 and "Time" in answer[len(answer)-3]:
+            exec_time = answer[len(answer)-3]
+        opt = ""
+        if answer[2][0:14] == "Optimization: ":
+            opt = answer[2][14:]
+        else:
+            opt = "Not optimized"
+        answers_struct["Answers"].append({"Answer":answer[1],"Optimization":opt})
+
+    answers_struct["Time"] = exec_time
+    return answers_struct
 
 
 def make_sched(answer):
@@ -100,6 +113,7 @@ def make_csv_file(file_name, head, body):
             output_writer.writerow(b)
 
 
-def print_table(name, head, body):
+def print_table(name, opt, head, body):
     print(name)
+    print("Optimization:",opt)
     print(tabulate(body, head, tablefmt="simple_grid"))

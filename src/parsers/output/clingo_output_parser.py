@@ -30,19 +30,22 @@ def main():
     if len(sys.argv) > 1:
         arg = int(sys.argv[1])
     raw = sys.stdin.read()
-    answers_list = parse_input(raw)
+    answers_struct = parse_input(raw)
+    answers_list = answers_struct["Answers"]
     if not answers_list:
         print("UNSAT")
         return
     i = 1
     for a in answers_list:
-        sched = make_sched(a)
+        sched = make_sched(a["Answer"])
         head, body = make_table(sched)
         if arg % 2 == 0:
-            print_table(f"Answer {i}", head, body)
+            print_table(f"Answer {i}",a["Optimization"],head, body)
         if arg > 0:
             make_csv_file(f"clingo-output{i}.csv", head, body)
         i += 1
 
+    if arg % 2 == 0:
+        print("\n"+answers_struct["Time"])        
 
 main()
