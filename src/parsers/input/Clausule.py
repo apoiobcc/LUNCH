@@ -4,6 +4,7 @@ Class Clausule
 Deals with the transformation for the ASP clausules format.
 A clausule is composed of one predicate and its arguments.
 """
+import re
 
 class Clausule:
     def __init__(self, predicate, args):
@@ -25,7 +26,7 @@ class Clausule:
             arg = str(arg).strip()
             if (arg[0].isdigit() and not arg.isdigit()):
                 arg = "\"" + arg + "\""
-            verified.append(arg.lower().replace('.', '').replace(' ','').replace('-','_'))
+            verified.append(re.sub(r'[^a-zA-Z0-9_"]', "", arg.lower().replace('-','_')))
         return verified
     
     def assembleClausule(self):

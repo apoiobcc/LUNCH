@@ -5,12 +5,12 @@ from parser_workload import *
 
 class TestClausule:
     def test_assemble(self):
-        cl = Clausule("test", ["1number", "123", "under-line","do.t","sp ace"])
-        correct = 'test("1number",123,under_line,dot,space).'
+        cl = Clausule("test", ["1number", "123", "under-line","do.t","sp ace", "pl+us"])
+        correct = 'test("1number",123,under_line,dot,space,plus).'
         assert cl.assembleClausule() == correct
     def test_verify(self):
-        correct = Clausule("test", ["1number", "123", "under_line","dot","space"])
-        verify = Clausule("test", ["1number", 123, "under-line","do.t.","spa ce"])
+        correct = Clausule("test", ["1number", "123", "under_line","dot","space", "pl+us"])
+        verify = Clausule("test", ["1number", 123, "under-line","do.t.","spa ce","plus"])
         assert correct.assembleClausule() == verify.assembleClausule()
 
 class TestTimecode:
