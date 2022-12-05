@@ -18,40 +18,31 @@ $ python3 parser-input-semestral.py <teacher_schedule_file.csv> <workload_file.c
 
 """
 
-import csv, sys
-from parser_teacher_schedule import * 
-from parser_workload import * 
-
-def teacherSched(file_name, noAnswer):
-    """
-        Given the csv schedule file and list of no answer teachers,
-        Creates the ASP clausules: available and preferable
-    """
-    info = getTeacherSched(file_name)
-    available = getAvailablePreferable(info, noAnswer)
-    with open(f"clingo_input_files/available.txt", 'a') as clingo_input_file:
-        clingo_input_file.write(available)
-
-def workload(file_name):
-    """
-        Given the csv workload file,
-        Creates the ASP clausules: course and class
-    """
-    notFixed, fixed = getWorkload(file_name)
-    s1 = assembleWorkload(notFixed)
-    s2 = assembleWorkload(fixed)
-
-    with open(f"clingo_input_files/course.txt", 'a') as clingo_input_file:
-        clingo_input_file.write(s1)
-    with open(f"clingo_input_files/class.txt", 'a') as clingo_input_file:
-        clingo_input_file.write(s2)
+import sys
+from ParserTeacherSchedule import * 
+from ParserWorkload import * 
 
 def main():
     teacher_sched_file = sys.argv[1]
     workload_file = sys.argv[2]
 
-    noAnswer = getNoAnswerTeachers(teacher_sched_file, workload_file)
-    teacherSched(teacher_sched_file, noAnswer)
-    workload(workload_file)
+    tparser = ParserTeacherSchedule(teacher_sched_file)
+    wparser = ParserWorkload(workload_file)
+
+    workload = wparser.assemble(wparser.parse())
+    teachers = tparser.assemble(tparser.parse())
+    noAnswer = tparser.assemble(tparser.noAnswer(workload_file, 7))
+
+    for k in workload.keys():
+        with open(f"clingo_input_files/{k}.txt", 'a') as clingo_input_file:
+            clingo_input_file.write(workload[k])
+    
+    for k in teachers.keys():
+        with open(f"clingo_input_files/{k}.txt", 'a') as clingo_input_file:
+            clingo_input_file.write(teachers[k])
+    
+    for k in noAnswer.keys():
+        with open(f"clingo_input_files/{k}.txt", 'a') as clingo_input_file:
+            clingo_input_file.write(noAnswer[k])
 
 main()

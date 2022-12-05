@@ -54,11 +54,3 @@ class ParserWorkload(InputParser):
             info['course'] = notFixed
             info[':- not class'] = fixed
             return info
-
-p = ParserWorkload("test_input_file/test_workload.csv")
-info = p.parse()
-t = p.assemble(info)
-for i in t.keys():
-    print(i)
-    print(t[i])
-    print()

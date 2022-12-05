@@ -18,6 +18,43 @@ class ParserTeacherSchedule(InputParser):
     def getDayHeader(self, header):
         return header.split("[")[1][:-1]
 
+    def noAnswer(self, file_name, teacher_column):
+        """
+            This fuction receives a csv file and the column containing names of teachers
+            and return a dictionary of teachers that are in the csv file but not in the self.csv_file 
+            file and all the available periods.
+        """
+        with open(self.csv_file) as t_csv:
+                teachers1 = set()
+                csv_reader = csv.reader(t_csv, delimiter=',')
+                # get header
+                for row in csv_reader:
+                    headers = row
+                    break
+                for row in csv_reader:
+                    teacher = self.getUsername(row[1])
+                    teachers1.update((teacher,))
+
+        with open(file_name) as w_csv:
+                teachers2 = set()
+                csv_reader = csv.reader(w_csv, delimiter=',')
+                # get header
+                for row in csv_reader:
+                    headers = row
+                    break
+                for row in csv_reader:
+                    teacher = self.getUsername(row[teacher_column])
+                    teachers2.update((teacher,))
+
+        args = []
+        for teacher in teachers2.difference(teachers1):
+            for d in self.timecoder.getAllDayCodes():
+                for p in self.timecoder.getAllPeriodCodes():
+                    args.append([teacher, d+p, 0])
+        info = dict()
+        info['available'] = args
+        return info
+
     def parse(self):
         with open(self.csv_file) as csv_file:
             info = dict()
@@ -84,11 +121,3 @@ class ParserTeacherSchedule(InputParser):
                     prefer_arg = 1 if period in preferable[teacher] else 0
                     ans.append([teacher, period, prefer_arg])
         return ans
-
-p = ParserTeacherSchedule("test_input_file/test_schedule.csv")
-info = p.parse()
-t = p.assemble(info)
-for i in t.keys():
-    print(i)
-    print(t[i])
-    print()
