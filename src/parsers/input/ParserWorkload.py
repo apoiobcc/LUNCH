@@ -51,7 +51,6 @@ class ParserWorkload(InputParser):
                                 period = self.timecoder.getPeriodCode(time[1].split('-')[0])
                                 for p in period:
                                     fixed.append([course, group, teacher, day+p])
-                                    notFixed.append([course, group, teacher])
-            info['course'] = notFixed
+            info['course'] = notFixed + fixed
             info[':- not class'] = fixed
             return info
