@@ -41,8 +41,8 @@ class ParserWorkload(InputParser):
                     group = row[2] if row[2] else self.getGroup(course)
                     teacher = self.getUsername(row[7])
                     fixed_time = row[5]
-                    if (fixed_time == ''):
-                        notFixed.append([course, group, teacher])
+                    if (fixed_time != ''): 
+                        notFixed.append([course, group, teacher])                    
                     else:
                         for time in fixed_time.split('e'):
                             time = time.strip().split(' ')
@@ -51,6 +51,7 @@ class ParserWorkload(InputParser):
                                 period = self.timecoder.getPeriodCode(time[1].split('-')[0])
                                 for p in period:
                                     fixed.append([course, group, teacher, day+p])
+                                    notFixed.append([course, group, teacher])
             info['course'] = notFixed
             info[':- not class'] = fixed
             return info
