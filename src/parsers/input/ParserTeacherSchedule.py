@@ -14,7 +14,14 @@ Clausule generated:
 import csv
 from InputParser import InputParser
 
-class ParserTeacherSchedule(InputParser):
+class ParserTeacherSchedule(InputParser): 
+    # stores teachers restrictions not mentioned in the schedule file
+    fixedRestrictions = dict()
+
+    def setRestriction(self, restriction):
+        if isinstance(restriction, dict):
+            self.fixedRestrictions = restriction
+    
     def getDayHeader(self, header):
         return header.split("[")[1][:-1]
 
@@ -47,13 +54,20 @@ class ParserTeacherSchedule(InputParser):
                     teachers2.update((teacher,))
 
         args = []
+        alltimes = self.allTimes()
         for teacher in teachers2.difference(teachers1):
-            for d in self.timecoder.getAllDayCodes():
-                for p in self.timecoder.getAllPeriodCodes():
-                    args.append([teacher, d+p, 0])
+            for p in self.removeFixedRestriction(teacher, alltimes):
+                    args.append([teacher, p, 0])
         info = dict()
         info['available'] = args
         return info
+
+    def allTimes(self):
+        times = []
+        for d in self.timecoder.getAllDayCodes():
+                for p in self.timecoder.getAllPeriodCodes():
+                    times.append(d+p)
+        return times
 
     def parse(self):
         with open(self.csv_file) as csv_file:
@@ -90,6 +104,7 @@ class ParserTeacherSchedule(InputParser):
                     restriction[day] = periods
                 # get teachers availability
                 available[teacher] = self.availablePeriods(restriction)
+                available[teacher] = self.removeFixedRestriction(teacher, available[teacher])
             info['available'] = self.uniteAvailPreferabel(available, preferable)
             return info
 
@@ -109,6 +124,14 @@ class ParserTeacherSchedule(InputParser):
             for p in periods:
                 available.append(p+key)
         return available
+
+    def removeFixedRestriction(self,teacher, periods):
+        if teacher in self.fixedRestrictions.keys():
+            restriction = self.fixedRestrictions[teacher]
+            removed = list(set(periods).difference(set(restriction)))
+            removed.sort()
+            return removed
+        return periods
 
     def uniteAvailPreferabel(self,available, preferable):
         ans = list()

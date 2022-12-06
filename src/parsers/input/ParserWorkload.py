@@ -17,6 +17,12 @@ import csv
 from InputParser import InputParser
 
 class ParserWorkload(InputParser):
+    # the courses given to this groups should be scheduled
+    SCHEDGROUPS = ["BCC", "BCC-pos"]
+    # stores the names and periods that teacher with fixed classes outside the schedgroups 
+    # can't give classes (will be passed to the sched parser) 
+    service = dict()
+
     def getGroup(self, course):
         if course[3] != '0': return "BCC-pos"
         return "BCC"
@@ -26,10 +32,12 @@ class ParserWorkload(InputParser):
         with open(self.csv_file) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             info = dict()
-            # stores the courses without fixed class time (will be scheduled)
-            notFixed = list()
+            # stores the courses that are being given
+            allCourses = list()
             # stores the courses with fixed class time
             fixed = list()
+            # stores the courses that should not be in the scheduler
+            service = dict()
             # get header
             for row in csv_reader:
                 headers = row
@@ -42,7 +50,7 @@ class ParserWorkload(InputParser):
                     teacher = self.getUsername(row[7])
                     fixed_time = row[5]
                     if (fixed_time == ''): 
-                        notFixed.append([course, group, teacher])                    
+                        allCourses.append([course, group, teacher])                    
                     else:
                         already_in = False
                         for time in fixed_time.split('e'):
@@ -50,11 +58,17 @@ class ParserWorkload(InputParser):
                             day = self.timecoder.getDayCode(time[0])
                             if day != 0:
                                 period = self.timecoder.getPeriodCode(time[1].split('-')[0])
-                                if period and not already_in:
-                                        notFixed.append([course, group, teacher]) 
-                                        already_in = True
+                                if period and not already_in and group in self.SCHEDGROUPS:
+                                    allCourses.append([course, group, teacher]) 
+                                    already_in = True
                                 for p in period:
-                                    fixed.append([course, group, teacher, day+p])
-            info['course'] = notFixed
+                                    if group in self.SCHEDGROUPS: 
+                                        fixed.append([course, group, teacher, day+p])
+                                    else:    
+                                        if teacher not in service.keys():
+                                            service[teacher] = set()
+                                        service[teacher].update((day+p,))
+            info['course'] = allCourses
             info[':- not class'] = fixed
+            self.service = service
             return info

@@ -26,10 +26,11 @@ def main():
     teacher_sched_file = sys.argv[1]
     workload_file = sys.argv[2]
 
-    tparser = ParserTeacherSchedule(teacher_sched_file)
     wparser = ParserWorkload(workload_file)
-
     workload = wparser.assemble(wparser.parse())
+
+    tparser = ParserTeacherSchedule(teacher_sched_file)
+    tparser.setRestriction(wparser.service)
     teachers = tparser.assemble(tparser.parse())
     noAnswer = tparser.assemble(tparser.noAnswer(workload_file, 7))
 
