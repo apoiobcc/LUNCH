@@ -51,4 +51,4 @@ This parser implements the parse function to the [workload table](#workload_tabl
 #### Teacher's Schedule Parser
 This parser implements the parse function to the [teacher's schedule table](#teacher_table) and returns the clausule for the "available" predicate.
 
-There are some supporting function to help parsing this file. The noAnswer function will receive a file name and a column with teachers name and return the names of all the teachers in that file that are not in the schedule file, giving for theses teachers availability in all periods (preferable argument = 0)
+There are some supporting function to help parsing this file. The noAnswer function will receive a file name and a column with teachers name and return the names of all the teachers in that file that are not in the schedule file, giving for theses teachers availability in all periods (preferable argument = 0). There is also the setFixedRestriction function where we can set some restrictions for each teacher aparte from the given file, the restrictions should be already given in out clingo timecode.
