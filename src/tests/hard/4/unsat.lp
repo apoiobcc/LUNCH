@@ -5,15 +5,22 @@ teacher/1(teacher name)
 teacher(profAAA).
 
 %*
-course/3(course id, teacher name, number of weekly courses)
+%*
+course/3(course id, group id, teacher name)
 ------------------------------------------------------------
 *%
-course(macAAA, 1, profAAA, 2).
+course(macAAA, 1, profAAA)
 
 %*
-available/2(teacher name, period)
+num_classes/2(class_id, number_of_weelky classes)
+------------------------------------------------------------
+*%
+num_classes(macAAA,2).
+
+%*
+available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
-available(profAAA,112).
+available(profAAA,112,0).
 
 class(macAAA,1,profAAA,111).

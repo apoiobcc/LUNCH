@@ -12,8 +12,8 @@ course(macAAA, 1, profAAA, 1).
 course(macBBB, 1, profAAA, 1).
 
 %*
-available/2(teacher name, period)
+available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
-available(profAAA, 111).
-available(profAAA, 211).
+available(profAAA, 111, 0).
+available(profAAA, 211, 0).

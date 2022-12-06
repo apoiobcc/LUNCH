@@ -141,12 +141,13 @@ def visualize_answer(raw):
 		Args:
 			raw: clingo raw output
 	'''
-	answers_list = parse_input(raw)
+	answers_struct = parse_input(raw)
+	answers_list = answers_struct["Answers"]
 	i = 0
 	for a in answers_list:
-		sched = make_sched(a)
+		sched = make_sched(a["Answer"])
 		head, body = make_table(sched)
-		print_table(f"", head, body)
+		print_table(f"",a["Optimization"],head, body)
 		i += 1
 
 def manage_stdin_input(search_predicates,VERBOSE,VISUAL):
@@ -238,7 +239,7 @@ def print_usage():
 	'''
 		Usage print
 	'''
-	print("Usage: python sat-answers-comparator.py --search {SEARCH FILE} --clingo {CLINGO ANSWERS FILE} --test {to run the tests}")
+	print("Usage: python sat-answers-comparator.py --search {SEARCH FILE} --clingo {CLINGO ANSWERS FILE} --test {to run the tests} --visual {to print the tables} --verbose {to show each answer")
 	sys.exit(2)
 
 

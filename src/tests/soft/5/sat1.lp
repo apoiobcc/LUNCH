@@ -13,12 +13,12 @@ course(mac333,66,profCCC).
 course(mac444,45,profDDD).
 
 %*
-available/2(teacher name, period)
+available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
-available(profCCC,311).
-available(profDDD,311).
-available(profDDD,411).
+available(profCCC,311,0).
+available(profDDD,311,0).
+available(profDDD,411,0).
 
 
 %*

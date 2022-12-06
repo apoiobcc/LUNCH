@@ -15,13 +15,13 @@ course(macNotScience2, 1, profBBB, 1).
 course(macSciences1, 1, profBBB, 1).
 
 %*
-available/2(teacher name, period)
+available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
-available(profAAA, 111).
-available(profAAA, 211).
-available(profBBB, 111).
-available(profBBB, 211).
+available(profAAA, 111, 0).
+available(profAAA, 211, 0).
+available(profBBB, 111, 0).
+available(profBBB, 211, 0).
 
 %*
 obligatory/2(course id, ideal period):
