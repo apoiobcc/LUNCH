@@ -18,7 +18,7 @@ joint/2(first course id, second course id)
 joint(macAAA, macBBB).
 
 %*
-available/2(teacher name, period)
+available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
-available(profAAA, 111).
+available(profAAA, 111, 0).

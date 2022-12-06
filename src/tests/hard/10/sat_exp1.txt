@@ -1,1 +1,1 @@
-joint(macAAA,macBBB) joint(macBBB,macAAA) course(macAAA,1,profAAA,1) course(macBBB,1,profAAA,1) course(macAAA) course(macBBB) available(profAAA,111) teacher(profAAA) class(macAAA,1,profAAA,111) class(macBBB,1,profAAA,111) conflict(macBBB,1,macAAA,1,111) conflict(macAAA,1,macBBB,1,111)
+joint(macAAA,macBBB) joint(macBBB,macAAA) course(macAAA,1,profAAA,1) course(macBBB,1,profAAA,1) course(macAAA) course(macBBB) available(profAAA,111,0) teacher(profAAA) class(macAAA,1,profAAA,111) class(macBBB,1,profAAA,111) conflict(macBBB,1,macAAA,1,111) conflict(macAAA,1,macBBB,1,111)
