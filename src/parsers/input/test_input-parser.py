@@ -286,9 +286,14 @@ class TestWorkload:
     def test_course(self):
         ans = self.p.parse()['course']
         correct = [
+            ["MAC0329","BCC","nina"],
+            ["MAC0101","BCC","leliane"],
+            ["MAC0321","Poli EC - PCS 2","ddm"],
+            ["MAC0113","FEA 1","pmiranda"],
+            ["MAC2166","Poli Web C","fujita"],
             ["MAC0320","BCC","yoshiko"],
             ["MAC5770","BCC-pos","yoshiko"],
-            ["MAC0327","BCC","mksilva"],
+            ["MAC0327","BCC","mksilva"]
         ]
         assert ans == correct
     
