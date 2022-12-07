@@ -51,5 +51,9 @@ def get_soft_name(Id):
     Id = str(Id).replace('"','').replace("'","")
     return Id.split(".")[0]
 
-
-#end.
+def joint_id(A,B):
+    lista = [A,B]
+    lista.sort()
+    return "joint" + str(lista[0]) + str(lista[1])
+    
+#end.   
