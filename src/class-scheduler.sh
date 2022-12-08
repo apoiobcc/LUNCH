@@ -5,6 +5,7 @@
 
 BASE_DIR=$(dirname "$0")
 CONSTRAINTS_DIR="${BASE_DIR}/constraints"
+INPUTS_DIR="${BASE_DIR}/input"
 OUTPUT_PARSER=$(find "$BASE_DIR" -name "clingo_output_parser.py")
 
 BASIC_CONSTRAINTS="$CONSTRAINTS_DIR/basic_constraints.lp"
@@ -13,9 +14,9 @@ PYTHON_OPS="$CONSTRAINTS_DIR/python_utils.lp"
 HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp")
 SOFT_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "sc*[0-9].lp")
 SC_METRICS="$CONSTRAINTS_DIR/sc_metrics.lp"
-INPUT="$BASE_DIR/input.lp"
+INPUT=$(find "$INPUTS_DIR" -name "*.txt")
 
-CLINGO_FLAGS=("--quiet=1" "--opt-mode=optN")
+CLINGO_FLAGS=("--quiet=1" "--opt-mode=optN" "--time-limit=120")
 
 # Output type option values
 OUTPUT_TABLE=0
@@ -101,4 +102,4 @@ clingo "${CLINGO_FLAGS[@]}" "$num_models" \
     $HARD_CONSTRAINTS \
     $SOFT_CONSTRAINTS \
     $SC_METRICS \
-    "$INPUT"  | python3 "$OUTPUT_PARSER" "$output_type"
+    $INPUT | python3 "$OUTPUT_PARSER" "$output_type"
