@@ -8,6 +8,7 @@ available/3(teacher name, period, is preferable)
 *%
 available(profAAA, 211, 0).
 available(profAAA, 212, 0).
+available(profAAA, 311, 0).
 
 %*
 num_classes/2(class_id, number_of_weelky classes):
