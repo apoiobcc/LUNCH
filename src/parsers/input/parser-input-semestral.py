@@ -19,8 +19,10 @@ $ python3 parser-input-semestral.py <teacher_schedule_file.csv> <workload_file.c
 """
 
 import sys
-from ParserTeacherSchedule import * 
-from ParserWorkload import * 
+
+from ParserTeacherSchedule import *
+from ParserWorkload import *
+
 
 def main():
     teacher_sched_file = sys.argv[1]
@@ -34,16 +36,23 @@ def main():
     teachers = tparser.assemble(tparser.parse())
     noAnswer = tparser.assemble(tparser.noAnswer(workload_file, 7))
 
-    for k in workload.keys():
-        with open(f"clingo_input_files/{k}.txt", 'a') as clingo_input_file:
-            clingo_input_file.write(workload[k])
-    
-    for k in teachers.keys():
-        with open(f"clingo_input_files/{k}.txt", 'a') as clingo_input_file:
-            clingo_input_file.write(teachers[k])
-    
-    for k in noAnswer.keys():
-        with open(f"clingo_input_files/{k}.txt", 'a') as clingo_input_file:
-            clingo_input_file.write(noAnswer[k])
+    if len(sys.argv) > 3:
+        for v in workload.values():
+            print(v)
+        for v in teachers.values():
+            print(v)
+        for v in noAnswer.values():
+            print(v)
+    else:
+        for k, v in workload.items():
+            with open(f"clingo_input_files/{k}.txt", "a") as clingo_input_file:
+                clingo_input_file.write(v)
+        for k, v in teachers.items():
+            with open(f"clingo_input_files/{k}.txt", "a") as clingo_input_file:
+                clingo_input_file.write(v)
+        for k, v in noAnswer.items():
+            with open(f"clingo_input_files/{k}.txt", "a") as clingo_input_file:
+                clingo_input_file.write(v)
+
 
 main()
