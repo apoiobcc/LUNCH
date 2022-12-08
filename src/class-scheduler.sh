@@ -22,7 +22,12 @@ OUTPUT_TABLE=0
 OUTPUT_CSV=1
 OUTPUT_BOTH=2
 
-# Print usage
+# Colors
+COLOR_RED="\e[31m"
+COLOR_YELLOW="\e[33m"
+COLOR_CLEAR="\e[0m"
+
+# Print program's usage
 usage() {
     cat <<EOF
 USAGE:
@@ -33,6 +38,20 @@ OPTIONS:
     -n | --num-models <number>: number of models to be generated, defaults to 1
     -o | --output-type <table|csv|both>: output style for the generated schedules
 EOF
+}
+
+# Pretty print errors
+# Args:
+#   $1 -> error message
+err() {
+    echo -e "${COLOR_RED}ERR: $1${COLOR_CLEAR}"
+}
+
+# Pretty print warnings
+# Args:
+#   $1 -> warning message
+warn() {
+    echo -e "${COLOR_YELLOW}WARN: $1${COLOR_CLEAR}"
 }
 
 # Parse CLI args
@@ -56,7 +75,7 @@ while [[ $# -gt 0 ]]; do
         table) output_type=$OUTPUT_TABLE ;;
         both) output_type=$OUTPUT_BOTH ;;
         *)
-            echo "ERR: bad option for flag --output-type (-o). Expected one of 'csv', 'table' or 'both'"
+            err "bad option for flag --output-type (-o). Expected one of 'csv', 'table' or 'both'"
             exit 1
             ;;
         esac
@@ -64,7 +83,7 @@ while [[ $# -gt 0 ]]; do
         shift
         ;;
     -*)
-        echo "WARN: unknown option $1"
+        warn "unknown option '$1'."
         shift
         ;;
     *)
