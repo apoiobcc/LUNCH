@@ -243,3 +243,5 @@ print_repeat "=" $(((TERMINAL_WIDTH - ${#FOOTER_TEXT}) / 2))
 echo -n "$FOOTER_TEXT"
 print_repeat "=" $(((TERMINAL_WIDTH - ${#FOOTER_TEXT}) / 2))
 echo
+
+exit $([ "$total_num_failures" -eq 0 ])
