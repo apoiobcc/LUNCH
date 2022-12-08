@@ -14,7 +14,7 @@ PYTHON_OPS="$CONSTRAINTS_DIR/python_utils.lp"
 HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp")
 SOFT_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "sc*[0-9].lp")
 SC_METRICS="$CONSTRAINTS_DIR/sc_metrics.lp"
-INPUT=$(find "$INPUTS_DIR" -name "*.txt")
+INPUT=$(find "$INPUTS_DIR" -name "*.lp")
 
 CLINGO_FLAGS=("--quiet=1" "--opt-mode=optN" "--time-limit=120")
 
