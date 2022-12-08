@@ -47,6 +47,16 @@ def calculate_weight_sc6(CUR1, CUR2):
         weight = 0
     return clingo.Number(weight)
 
+def calculate_weight_sc12(DIFF):
+    diff = DIFF.number
+
+    if (diff == 1):
+        return 100
+    elif (diff == 3):
+        return 50
+    else:
+        return 70
+
 def get_soft_name(Id):
     Id = str(Id).replace('"','').replace("'","")
     return Id.split(".")[0]
