@@ -3,6 +3,8 @@
 # This script runs the class scheduler using all available constraints and
 # returns a nicely formatted output for the user.
 
+set -eo pipefail
+
 # Useful directories
 BASE_DIR=$(dirname "$0")
 CONSTRAINTS_DIR="${BASE_DIR}/constraints"
