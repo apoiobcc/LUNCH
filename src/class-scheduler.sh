@@ -37,6 +37,9 @@ COLOR_RED="\e[31m"
 COLOR_YELLOW="\e[33m"
 COLOR_CLEAR="\e[0m"
 
+# Debug mode (0 = disabled, 1 = enabled)
+DEBUG=0
+
 # Print program's usage
 usage() {
     cat <<EOF
@@ -49,6 +52,7 @@ REQUIRED PARAMS:
 
 OPTIONS:
     -h | --help: print this help message
+    -d | --debug: enable debug mode
     -n | --num-models <number>: number of models to be generated, defaults to 1
     -o | --output-type <table|csv|both>: output style for the generated schedules
 EOF
@@ -68,6 +72,17 @@ warn() {
     echo -e "${COLOR_YELLOW}WARN: $1${COLOR_CLEAR}"
 }
 
+# Callback function called before exiting the program
+on_exit() {
+    EXIT_CODE=$?
+    if ! [ "$DEBUG" -eq 1 ]; then
+        rm "$SEMESTER_INPUT"
+    fi
+    exit $EXIT_CODE
+}
+
+trap on_exit EXIT ERR
+
 # Parse CLI args
 num_models=1
 output_type=$OUTPUT_TABLE
@@ -79,6 +94,10 @@ while [[ $# -gt 0 ]]; do
     -h | --help)
         usage
         exit 0
+        ;;
+    -d | --debug)
+        DEBUG=1
+        shift
         ;;
     -n | --num-models)
         num_models="$2"
