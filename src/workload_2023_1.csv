@@ -1,0 +1,70 @@
+Sigla,Nome,Turma,Grupo,Semestre,Horário Fixo,Professor,E-mail
+MAC0329,Álgebra Booleana e Aplicações,BCC,,1o sem,3a 08:00 e 5a 10:00,Nina Sumiko Tomita Hirata,nina@ime.usp.br
+MAC0210,Laboratório de Métodos Numéricos,BCC,,1o sem,3a 08:00 e 5a 10:00,Ernesto Julián Goldberg Birgin,egbirgin@ime.usp.br
+MAC0323,Algoritmos e Estruturas de Dados II,BCC,,1o sem,3a 10:00 e 5a 08:00,Carlos Eduardo Ferreira,cef@ime.usp.br
+MAC0350,Introdução ao Desenvolvimento de Sistemas de Software,BCC,,1o sem,3a 10:00 e 5a 08:00,João Eduardo Ferreira,jef@ime.usp.br
+MAC0422,Sistemas Operacionais,BCC,,1o sem,2a 10:00 e 4a 08:00,Alan Mitchell Durham,durham@ime.usp.br
+MAC0427,Otimização não Linear (BMA),BCC,,1o sem,2a 16:00 e 5a 14:00,Walter Figueiredo Mascarenhas,walterfm@ime.usp.br
+MAC0105,Fundamentos de Matemática para a Computação,BCC,,1o sem,4a 14:00 e 6a 08:00,Guilherme Oliveira Mota,mota@ime.usp.br
+MAC0110,Introdução à Computação,BCC,,1o sem,2a 08:00 e 4a 10:00,Marcelo Gomes de Queiroz,mqz@ime.usp.br
+MAC0499,Trabalho de formatura,BCC,,1o sem,Sab 07:00-08:00,Nina Sumiko Tomita Hirata,nina@ime.usp.br
+MAC0209,Modelagem e Simulação,BCC,,1o sem,2a 14:00 e 2a 16:00,Roberto Marcondes Cesar Junior,cesar@ime.usp.br
+MAC0101,Introdução à Ciência da Computação,BCC,,1o sem,3a 13:00-14:40,Leliane Nunes de Barros,leliane@ime.usp.br
+MAC0102,Caminhos no Bacharelado em Ciência da Computação,BCC,,1o sem,5a 13:00-14:40,Flávio Soares Correa da Silva,fcs@ime.usp.br
+MAC0213,Atividade Curricular em Comunidade,BCC,,1o sem,Sab 08:00,Leliane Nunes de Barros,leliane@ime.usp.br
+MAC0214,Atividade Curricular em Cultura e Extensão,BCC,,1o sem,Sab 14:00,Flávio Soares Correa da Silva,fcs@ime.usp.br
+MAC0215,Atividade Curricular em Pesquisa,BCC,,1o sem,Sab 10:00,Leliane Nunes de Barros,leliane@ime.usp.br
+CCM0128 ,Computação II (Ciências Moleculares),Ciências Moleculares,,1o sem,3a 14:00 e 4a 16:00,André Fujita,fujita@ime.usp.br
+MAC0110,Introdutória ,BE+BM+BMA 1,IntroDiurnoSem1,1o sem,3a 08:00 e 5a 10:00,Carlos Eduardo Ferreira,cef@ime.usp.br
+MAC0110,Introdutória ,BE+BM+BMA 2,IntroDiurnoSem1,1o sem,3a 08:00 e 5a 10:00,Renata Wassermann,renata@ime.usp.br
+MAC0110,Introdutória,LM,IntroDiurnoSem1,1o sem,3a 10:00 e 6a 13:20,Nami Kobayashi,nami@ime.usp.br
+MAC0115,Introdutória,IAG Meteorologia,IntroDiurnoSem1,1o sem,3a 10:00 e 5a 08:00,Ernesto Julián Goldberg Birgin,egbirgin@ime.usp.br
+MAC0321,Laboratório de Programação Orientada a Objetos ,Poli EC - PCS 1,LabPOOPoli,1o sem,5a 08:20 e 5a 10:20,Denis Deratani Maua,ddm@ime.usp.br
+MAC0321,Laboratório de Programação Orientada a Objetos,Poli EC - PCS 2,LabPOOPoli,1o sem,6a 08:20 e 6a 10:20,Denis Deratani Maua,ddm@ime.usp.br
+MAC0113,Introdução à Computação para Ciências Humanas,FEA 1,IntroDiurnoFEA,1o sem,4a 07:30 e 6a 09:20,Temporário (22/23),temp
+MAC0113,Introdução à Computação para Ciências Humanas,FEA 2,IntroDiurnoFEA,1o sem,4a 09:20 e 6a 07:30,Temporário (22/23),temp
+MAC2166,Introdução à Computação (Poli) - C,Poli C 1,IntroPoliC,1o sem,3a 09:20 e 5a 13:10,Yoshiharu Kohayakawa,yoshi@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - C,Poli C 2,IntroPoliC,1o sem,3a 07:30 e 5a 07:30,Cristina Gomes Fernandes,cris@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - C,Poli C 3,IntroPoliC,1o sem,3a 09:20 e 5a 09:20,Guilherme Oliveira Mota,mota@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 1,IntroPoliPython,1o sem,2a 13:10 e 4a 13:10,Alair Pereira do Lago,alair@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 2,IntroPoliPython,1o sem,2a 15:00 e 4a 15:00,Alair Pereira do Lago,alair@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 3,IntroPoliPython,1o sem,4a 09:20 e 6a 07:30,Paulo Miranda,pmiranda@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 4,IntroPoliPython,1o sem,5a 07:30 e 6a 15:00,Paulo Miranda,pmiranda@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 5,IntroPoliPython,1o sem,5a 09:20 e 6a 13:10,Leliane Nunes de Barros,leliane@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 6,IntroPoliPython,1o sem,3a 07:30 e 6a 07:30,Marcelo Finger,mfinger@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 7,IntroPoliPython,1o sem,3a 09:20 e 6a 09:20,Marcelo Finger,mfinger@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 8,IntroPoliPython,1o sem,4a 15:00 e 6a 09:20,Ronaldo Fumio Hashimoto,ronaldo@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - python,Poli Python 9,IntroPoliPython,1o sem,4a 13:10 e 6a 07:30,Paulo Roberto Miranda Meirelles,paulormm@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - turma 13 (Web),Poli Web C,,1o sem,2a 18:30 e 6a 17:00,André Fujita,fujita@ime.usp.br
+MAC2166,Introdução à Computação (Poli) - turma 13 (Web),Poli Web Python,,1o sem,3a 17:00 e 5a 17:00,André Fujita,fujita@ime.usp.br
+MAC0113,Introdução à Computação para Ciências Humanas,FEA 1,IntroNoturnoFEA,1o sem,3a 19:30 e 5a 21:20,Roberto Hirata Jr.,hirata@ime.usp.br
+MAC0113,Introdução à Computação para Ciências Humanas,FEA 2,IntroNoturnoFEA,1o sem,3a 21:20 e 5a 19:30,Roberto Hirata Jr.,hirata@ime.usp.br
+MAC0110,Introdutória (BMac),BMAC,,1o sem,4a 21:10 e 6a 19:20,Manoel Marcílio Sanches,mms@ime.usp.br
+MAC0427 ,Otimização não Linear (BMac),BMAC,,1o sem,2a 19:20 e 5a 21:10,Walter Figueiredo Mascarenhas,walterfm@ime.usp.br
+MAC4722,"Linguagens, Autômatos e Computabilidade",,,1o sem,,Nami Kobayashi,nami@ime.usp.br
+MAC0219/MAC5742,Introdução à Computação Paralela e Distribuída,,,1o sem,,Alfredo Goldman Vel Lejbman,gold@ime.usp.br
+MAC6711,Tópicos de Análise de Algoritmos,,,1o sem,,Cristina Gomes Fernandes,cris@ime.usp.br
+IBI5031,Reconhecimento de Padrões I,,,1o sem,,Júnior Barrera,jb@ime.usp.br
+IBI5037,Algoritmos em Bioinformática,,,1o sem,,Alan Mitchell Durham,durham@ime.usp.br
+MAC6992/IBI5092,Introdução de Estatística de Redes,,,1o sem,,André Fujita,fujita@ime.usp.br
+MAC0327,Desafios de Programação I,,,1o sem,,Marcel K. de Carli Silva,mksilva@ime.usp.br
+MAC0345,Desafios de Programação Avançados,,,1o sem,,Carlos Eduardo Ferreira,cef@ime.usp.br
+MAC0320/MAC5770,Introdução à Teoria dos Grafos,,,1o sem,,Yoshiko Wakabayashi,yoshiko@ime.usp.br
+MAC0691/MAC6918,Tópicos na Teoria Algébrica dos Grafos.,,,1o sem,,Marcel K. de Carli Silva,mksilva@ime.usp.br
+MAC0473/MAC5780,Otimização Inteira,,,1o sem,,Marcel K. de Carli Silva,mksilva@ime.usp.br
+MAT0223,Introdução à Teoria dos Números,,,1o sem,,Sinai Robins,srobins@ime.usp.br
+MAC0218,Técnicas de Programação 2,,,1o sem,,Alfredo Goldman Vel Lejbman,gold@ime.usp.br
+MAC0467/MAC6909,Empreendedorismo Digital ,,,1o sem,,Fabio Kon,kon@ime.usp.br
+MAC0439,Laboratório de Bancos de Dados,,,1o sem,,Kelly Rosa Braghetto,kellyrb@ime.usp.br
+MAC5753,Sistemas Operacionais,,,1o sem,,Alan Mitchell Durham,durham@ime.usp.br
+MAC0425/MAC5739,Inteligência Artificial,,,1o sem,,Renata Wassermann,renata@ime.usp.br
+MAC0460/MAC5832,Introdução ao Aprendizado de Máquina,,,1o sem,,Ronaldo Fumio Hashimoto,ronaldo@ime.usp.br
+MAC0417/MAC5768,Visão Computacional e Processamento de Imagens,,,1o sem,,Júnior Barrera,jb@ime.usp.br
+MAC0420/MAC5744,Introdução à Computação Gráfica,,,1o sem,,Carlos Hitoshi Morimoto,hitoshi@ime.usp.br
+MAC????,Optativa do Leonidas,,,1o sem,,Leônidas de Oliveira Brandão,leo@ime.usp.br
+MAC0336/MAC5723,Criptografia para Segurança de Dados,,,1o sem,,Routo Terada,rt@ime.usp.br
+MAC0436/MAC????,Tópicos de Matemática Discreta I,,,1o sem,,Cláudio L. Lucchesi,claudiolu710@gmail.com
+MAC6989,"Seminários em Combinatória Extremal, Probabilística e Aditiva III",,,1o sem,,Guilherme Oliveira Mota,mota@ime.usp.br
+MAC6931,Estudos Avançados em Sistemas de Software,,,1o sem,,Kelly Rosa Braghetto,kellyrb@ime.usp.br
+MAC6956,Estudos Avançados em Aprendizado de Máquina Aplicado à Análise de Imagens,,,1o sem,,Nina Sumiko Tomita Hirata,nina@ime.usp.br
+MAC6937,Estudos Avançados em Medidas de Conectividade II,,,1o sem,,André Fujita,fujita@ime.usp.br

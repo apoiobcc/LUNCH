@@ -5,7 +5,7 @@
 
 BASE_DIR=$(dirname "$0")
 CONSTRAINTS_DIR="${BASE_DIR}/constraints"
-INPUTS_DIR="${BASE_DIR}/input"
+INPUTS_DIR="${BASE_DIR}/static-input"
 OUTPUT_PARSER=$(find "$BASE_DIR" -name "clingo_output_parser.py")
 
 BASIC_CONSTRAINTS="$CONSTRAINTS_DIR/basic_constraints.lp"
