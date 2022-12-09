@@ -3,19 +3,25 @@
 # This script runs the class scheduler using all available constraints and
 # returns a nicely formatted output for the user.
 
+# Useful directories
 BASE_DIR=$(dirname "$0")
 CONSTRAINTS_DIR="${BASE_DIR}/constraints"
 INPUTS_DIR="${BASE_DIR}/static-input"
-OUTPUT_PARSER=$(find "$BASE_DIR" -name "clingo_output_parser.py")
 
+# Parsers
+OUTPUT_PARSER=$(find "$BASE_DIR" -name "clingo_output_parser.py")
+INPUT_PARSER=$(find "$BASE_DIR" -name "parser-input-semestral.py")
+
+# Clingo input
 BASIC_CONSTRAINTS="$CONSTRAINTS_DIR/basic_constraints.lp"
-MINIMIZE_SC="$CONSTRAINTS_DIR/minimize_sc.lp"
-PYTHON_OPS="$CONSTRAINTS_DIR/python_utils.lp"
 HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp")
 SOFT_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "sc*[0-9].lp")
+MINIMIZE_SC="$CONSTRAINTS_DIR/minimize_sc.lp"
+PYTHON_OPS="$CONSTRAINTS_DIR/python_utils.lp"
 SC_METRICS="$CONSTRAINTS_DIR/sc_metrics.lp"
 WEIGHT_CONFIG="$BASE_DIR/weight_config.lp"
 INPUT=$(find "$INPUTS_DIR" -name "*.lp")
+SEMESTER_INPUT=$(mktemp "class-scheduler-semester-input-XXXXXXXX")
 
 CLINGO_FLAGS=("--quiet=1" "--opt-mode=optN" "--time-limit=120")
 
@@ -33,7 +39,11 @@ COLOR_CLEAR="\e[0m"
 usage() {
     cat <<EOF
 USAGE:
-    class-scheduler [OPTIONS]         Run the class scheduler POC
+    class-scheduler -w <workload-csv> -t <teacher-schedule-csv> [OPTIONS]
+
+REQUIRED PARAMS:
+    -t | --teacher-schedule-csv <path>: CSV with teacher's semestral schedule
+    -w | --workload-csv <path>: CSV with current semester workload
 
 OPTIONS:
     -h | --help: print this help message
@@ -59,6 +69,8 @@ warn() {
 # Parse CLI args
 num_models=1
 output_type=$OUTPUT_TABLE
+teacher_schedule_csv=""
+workload_csv=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -84,6 +96,16 @@ while [[ $# -gt 0 ]]; do
         shift
         shift
         ;;
+    -t | --teacher-schedule-csv)
+        teacher_schedule_csv="$2"
+        shift
+        shift
+        ;;
+    -w | --workload-csv)
+        workload_csv="$2"
+        shift
+        shift
+        ;;
     -*)
         warn "unknown option '$1'."
         shift
@@ -95,6 +117,22 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# Asserts that both CSVs where received
+if [ -z "$teacher_schedule_csv" ]; then
+    err "missing CSV input with teacher's schedule."
+    usage
+    exit 1
+fi
+
+if [ -z "$workload_csv" ]; then
+    err "missing CSV input with semester workload."
+    usage
+    exit 1
+fi
+
+# Parse semester input
+python3 "$INPUT_PARSER" "$teacher_schedule_csv" "$workload_csv" stdout >"$SEMESTER_INPUT"
+
 # Runs the clingo interpreter
 clingo "${CLINGO_FLAGS[@]}" "$num_models" \
     "$MINIMIZE_SC" \
@@ -104,4 +142,6 @@ clingo "${CLINGO_FLAGS[@]}" "$num_models" \
     $HARD_CONSTRAINTS \
     $SOFT_CONSTRAINTS \
     $SC_METRICS \
-    $INPUT | python3 "$OUTPUT_PARSER" "$output_type"
+    $INPUT \
+    "$SEMESTER_INPUT" |
+    python3 "$OUTPUT_PARSER" "$output_type"
