@@ -25,7 +25,7 @@ WEIGHT_CONFIG="$BASE_DIR/weight_config.lp"
 INPUT=$(find "$INPUTS_DIR" -name "*.lp")
 SEMESTER_INPUT=$(mktemp "class-scheduler-semester-input-XXXXXXXX")
 
-CLINGO_FLAGS=("--quiet=1" "--opt-mode=optN" "--time-limit=120")
+CLINGO_FLAGS=("--quiet=1" "--opt-mode=optN")
 
 # Output type option values
 OUTPUT_TABLE=0
@@ -55,6 +55,7 @@ OPTIONS:
     -d | --debug: enable debug mode
     -n | --num-models <number>: number of models to be generated, defaults to 1
     -o | --output-type <table|csv|both>: output style for the generated schedules
+    -t | --time-limit <number>: limit execution time to <number> of seconds, defaults to 500
 EOF
 }
 
@@ -92,6 +93,7 @@ trap on_exit EXIT ERR
 
 # Parse CLI args
 num_models=1
+time_limit=500
 output_type=$OUTPUT_TABLE
 schedule_csv=""
 workload_csv=""
@@ -122,6 +124,15 @@ while [[ $# -gt 0 ]]; do
         both) output_type=$OUTPUT_BOTH ;;
         *) warn "bad value for flag --output-type (-o). Expected one of 'csv', 'table' or 'both'" ;;
         esac
+        shift
+        shift
+        ;;
+    -t | --time-limit)
+        if is_number "$2"; then
+            time_limit="$2"
+        else
+            warn "bad value for flag --time-limit (-t). Value is not a number."
+        fi
         shift
         shift
         ;;
@@ -164,6 +175,7 @@ python3 "$INPUT_PARSER" "$schedule_csv" "$workload_csv" stdout >"$SEMESTER_INPUT
 
 # Runs the clingo interpreter
 clingo "${CLINGO_FLAGS[@]}" "$num_models" \
+    --time-limit="$time_limit" \
     "$MINIMIZE_SC" \
     "$PYTHON_OPS" \
     "$WEIGHT_CONFIG" \
