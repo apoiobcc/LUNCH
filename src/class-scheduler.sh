@@ -84,7 +84,7 @@ warn() {
 on_exit() {
     EXIT_CODE=$?
     if ! [ "$DEBUG" -eq 1 ]; then
-        rm "$SEMESTER_INPUT"
+        rm "$SEMESTER_INPUT" 2>/dev/null
     fi
     exit $EXIT_CODE
 }
