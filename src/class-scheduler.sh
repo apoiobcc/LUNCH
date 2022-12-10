@@ -44,10 +44,10 @@ DEBUG=0
 usage() {
     cat <<EOF
 USAGE:
-    class-scheduler -w <workload-csv> -t <teacher-schedule-csv> [OPTIONS]
+    class-scheduler -w <workload-csv> -s <schedule-csv> [OPTIONS]
 
 REQUIRED PARAMS:
-    -t | --teacher-schedule-csv <path>: CSV with teacher's semestral schedule
+    -s | --schedule-csv <path>: CSV with teacher's semestral schedule
     -w | --workload-csv <path>: CSV with current semester workload
 
 OPTIONS:
@@ -86,7 +86,7 @@ trap on_exit EXIT ERR
 # Parse CLI args
 num_models=1
 output_type=$OUTPUT_TABLE
-teacher_schedule_csv=""
+schedule_csv=""
 workload_csv=""
 
 while [[ $# -gt 0 ]]; do
@@ -117,8 +117,8 @@ while [[ $# -gt 0 ]]; do
         shift
         shift
         ;;
-    -t | --teacher-schedule-csv)
-        teacher_schedule_csv="$2"
+    -s | --schedule-csv)
+        schedule_csv="$2"
         shift
         shift
         ;;
@@ -139,7 +139,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Asserts that both CSVs where received
-if [ -z "$teacher_schedule_csv" ]; then
+if [ -z "$schedule_csv" ]; then
     err "missing CSV input with teacher's schedule."
     usage
     exit 1
@@ -152,7 +152,7 @@ if [ -z "$workload_csv" ]; then
 fi
 
 # Parse semester input
-python3 "$INPUT_PARSER" "$teacher_schedule_csv" "$workload_csv" stdout >"$SEMESTER_INPUT"
+python3 "$INPUT_PARSER" "$schedule_csv" "$workload_csv" stdout >"$SEMESTER_INPUT"
 
 # Runs the clingo interpreter
 clingo "${CLINGO_FLAGS[@]}" "$num_models" \
