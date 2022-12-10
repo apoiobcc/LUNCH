@@ -120,10 +120,7 @@ while [[ $# -gt 0 ]]; do
         csv) output_type=$OUTPUT_CSV ;;
         table) output_type=$OUTPUT_TABLE ;;
         both) output_type=$OUTPUT_BOTH ;;
-        *)
-            err "bad option for flag --output-type (-o). Expected one of 'csv', 'table' or 'both'"
-            exit 1
-            ;;
+        *) warn "bad value for flag --output-type (-o). Expected one of 'csv', 'table' or 'both'" ;;
         esac
         shift
         shift
