@@ -58,6 +58,13 @@ OPTIONS:
 EOF
 }
 
+# Checks if an input string is a number
+# Args:
+#   $1 -> input string
+is_number() {
+    [[ "$1" =~ ^[0-9]+$ ]]
+}
+
 # Pretty print errors
 # Args:
 #   $1 -> error message
@@ -100,7 +107,11 @@ while [[ $# -gt 0 ]]; do
         shift
         ;;
     -n | --num-models)
-        num_models="$2"
+        if is_number "$2"; then
+            num_models="$2"
+        else
+            warn "bad value for flag --num-models (-n). Value is not a number."
+        fi
         shift
         shift
         ;;
