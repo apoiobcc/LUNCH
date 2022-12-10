@@ -5,7 +5,7 @@ services:
     volumes:
       - .:/class-scheduler
     working_dir: /class-scheduler/src
-    command: bash class-scheduler.sh
+    command: bash
   # Run tests
   test:
     build: .
