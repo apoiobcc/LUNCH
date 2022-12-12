@@ -43,6 +43,7 @@ HARD_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "hc*[0-9].lp" | sort)
 SOFT_CONSTRAINTS=$(find "$CONSTRAINTS_DIR" -name "sc*[0-9].lp" | sort)
 PYTHON_UTILS="$CONSTRAINTS_DIR/python_utils.lp"
 MINIMIZE_SC="$CONSTRAINTS_DIR/minimize_sc.lp"
+WEIGHT_CONFIG="$BASE_DIR/../weight_config.lp"
 
 TEMP_RESULTS_FILE=$(mktemp "/tmp/class-scheduler-tests.XXXXXXX")
 TERMINAL_WIDTH=$(tput cols)
@@ -147,7 +148,7 @@ run_constraint_test(){
         
         else
 
-            clingo --opt-mode=optN --quiet=1 0 "$BASIC_CONSTRAINTS" $HARD_CONSTRAINTS "$c_file" "$PYTHON_UTILS" "$MINIMIZE_SC" "$REDUCE_OUT_FILE" "$sat_test"  > "$TEMP_RESULTS_FILE" 2>/dev/null
+            clingo --opt-mode=optN --quiet=1 0 "$BASIC_CONSTRAINTS" $HARD_CONSTRAINTS "$c_file" "$PYTHON_UTILS" "$MINIMIZE_SC" "$REDUCE_OUT_FILE" "$sat_test" "$WEIGHT_CONFIG" > "$TEMP_RESULTS_FILE" 2>/dev/null
         fi
 
         python3 "$SAT_VERIFICATION_PROG" --expected "$expected_output" --clingo "$TEMP_RESULTS_FILE" --operation equal |
@@ -166,7 +167,7 @@ run_constraint_test(){
     for unsat_test in $unsat_tests; do
         c_num_tests=$((c_num_tests + 1))
         test_filename=$(basename "$unsat_test")
-        clingo 0 "$BASIC_CONSTRAINTS" "$c_file" "$unsat_test" 2>/dev/null |
+        clingo 0 "$BASIC_CONSTRAINTS" "$c_file" "$unsat_test" "$WEIGHT_CONFIG" 2>/dev/null |
             grep -q '^SATISFIABLE$' &&
             c_num_failures=$((c_num_failures + 1)) &&
             print_UNSAT_fail "$constraint_num" "$sat_test_num" $c_label
