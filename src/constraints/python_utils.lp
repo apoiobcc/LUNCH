@@ -46,11 +46,11 @@ def calculate_weight_sc2(IDEAL1, IDEAL2):
     weight = base_weight//difference
     return clingo.Number(weight)
 
-def calculate_weight_sc6(CUR1, CUR2):
-    base_weight = get_weight("sc6")
+def calculate_weight_sc7(CUR1, CUR2):
+    base_weight = get_weight("sc7")
     curriculum1 = str(CUR1)
     curriculum2 = str(CUR2)
-    if (curriculum1 != curriculum2):
+    if (curriculum1!= curriculum2):
         weight = base_weight * 5
     elif (curriculum1 == 'pos_theory'):
         weight = base_weight * 3
@@ -60,8 +60,8 @@ def calculate_weight_sc6(CUR1, CUR2):
         weight = 0
     return clingo.Number(weight)
 
-def calculate_weight_sc12(DIFF):
-    base_weight = get_weight("sc12")
+def calculate_weight_sc11(DIFF):
+    base_weight = get_weight("sc11")
     diff = DIFF.number
     if (diff == 1):
         return base_weight * 10
