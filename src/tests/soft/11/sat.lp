@@ -17,8 +17,8 @@ available/3(teacher name, period, is preferable)
 ---------------------------------
 *%
 available(profAAA,211,0).
-available(profAAA,321,0).
-available(profAAA,312,0).
+available(profAAA,311,0).
+available(profAAA,411,0).
 
 %*
 num_classes/2(course id, number of weekly courses)

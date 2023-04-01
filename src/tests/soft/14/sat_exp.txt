@@ -1,3 +1,0 @@
-class(macFFF,45,profFFF,111) class(macFFF,45,profFFF,411) class(macMMM,46,profMMM,121) class(macMMM,46,profMMM,312)
-
-class(macFFF,45,profFFF,111) class(macFFF,45,profFFF,411) class(macMMM,46,profMMM,111) class(macMMM,46,profMMM,312)

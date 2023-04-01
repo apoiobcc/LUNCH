@@ -1,5 +1,3 @@
-class(mac111,1,profAAA,211) class(mac222,1,profAAA,111) class(mac333,1,profBBB,211) class(mac444,1,profBBB,111) class(mac555,1,profCCC,211) class(mac666,1,profDDD,211)
+class(macFFF,45,profFFF,111) class(macFFF,45,profFFF,411) class(macMMM,46,profMMM,121) class(macMMM,46,profMMM,312)
 
-class(mac111,1,profAAA,111) class(mac222,1,profAAA,211) class(mac333,1,profBBB,211) class(mac444,1,profBBB,111) class(mac555,1,profCCC,211) class(mac666,1,profDDD,211)
-
-class(mac111,1,profAAA,211) class(mac222,1,profAAA,111) class(mac333,1,profBBB,111) class(mac444,1,profBBB,211) class(mac555,1,profCCC,211) class(mac666,1,profDDD,211)
+class(macFFF,45,profFFF,111) class(macFFF,45,profFFF,411) class(macMMM,46,profMMM,111) class(macMMM,46,profMMM,312)

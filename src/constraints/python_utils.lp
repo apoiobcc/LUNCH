@@ -25,8 +25,8 @@ def concat(*args):
         ans+= str(s) + "."
     return ans[0:-1]
 
-def calculate_weight_sc1(IDEAL1, IDEAL2):
-    base_weight = get_weight("sc1")
+def calculate_weight_sc01(IDEAL1, IDEAL2):
+    base_weight = get_weight("sc01")
     period1 = int(str(IDEAL1))
     period2 = int(str(IDEAL2))
     difference = abs(period1 - period2)
@@ -38,16 +38,16 @@ def calculate_weight_sc1(IDEAL1, IDEAL2):
         weight = base_weight//(difference * 2)
     return clingo.Number(weight)
 
-def calculate_weight_sc2(IDEAL1, IDEAL2):
-    base_weight = get_weight("sc2")
+def calculate_weight_sc02(IDEAL1, IDEAL2):
+    base_weight = get_weight("sc02")
     period1 = int(str(IDEAL1))
     period2 = int(str(IDEAL2))
     difference = abs(period1 - period2)
     weight = base_weight//difference
     return clingo.Number(weight)
 
-def calculate_weight_sc7(CUR1, CUR2):
-    base_weight = get_weight("sc7")
+def calculate_weight_sc07(CUR1, CUR2):
+    base_weight = get_weight("sc07")
     curriculum1 = str(CUR1)
     curriculum2 = str(CUR2)
     if (curriculum1!= curriculum2):
