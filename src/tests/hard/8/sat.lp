@@ -4,10 +4,11 @@ teacher/1(teacher name)
 teacher(profAAA).
 
 %*
-available/2(teacher name, period)
+available/3(teacher name, period, is preferable)
 *%
-available(profAAA, 211).
-available(profAAA, 212).
+available(profAAA, 211, 0).
+available(profAAA, 212, 0).
+available(profAAA, 311, 0).
 
 %*
 num_classes/2(class_id, number_of_weelky classes):

@@ -1,0 +1,3 @@
+class(macObligatory1,1,profAAA,211) class(macNotScience1,1,profAAA,111) class(macNotScience2,1,profBBB,211) class(macSciences1,1,profBBB,111)
+
+class(macObligatory1,1,profAAA,111) class(macNotScience1,1,profAAA,211) class(macNotScience2,1,profBBB,111) class(macSciences1,1,profBBB,211)
