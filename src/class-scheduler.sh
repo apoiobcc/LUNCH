@@ -56,6 +56,7 @@ OPTIONS:
     -n | --num-models <number>: number of models to be generated, defaults to 1
     -o | --output-type <table|csv|both>: output style for the generated schedules
     -t | --time-limit <number>: limit execution time to <number> of seconds, defaults to 500
+    -c | --num-cores <number>: number of cores to be used in parallel execution
 EOF
 }
 
@@ -94,6 +95,7 @@ trap on_exit EXIT ERR
 # Parse CLI args
 num_models=1
 time_limit=500
+num_cores=1
 output_type=$OUTPUT_TABLE
 schedule_csv=""
 workload_csv=""
@@ -136,6 +138,15 @@ while [[ $# -gt 0 ]]; do
         shift
         shift
         ;;
+    -c | --num-cores)
+        if is_number "$2";then
+            num_cores="$2"
+        else
+            warn "bad value for flag --num-cores (-c). Value is not a number;"
+        fi
+        shift
+        shift
+        ;;
     -s | --schedule-csv)
         schedule_csv="$2"
         shift
@@ -171,11 +182,13 @@ if [ -z "$workload_csv" ]; then
 fi
 
 # Parse semester input
-python3 "$INPUT_PARSER" "$schedule_csv" "$workload_csv" stdout >"$SEMESTER_INPUT"
+python3 "$INPUT_PARSER" "$schedule_csv" "$workload_csv" stdout > "$SEMESTER_INPUT"
 
 # Runs the clingo interpreter
+
 clingo "${CLINGO_FLAGS[@]}" "$num_models" \
     --time-limit="$time_limit" \
+    --parallel-mode="$num_cores" \
     "$MINIMIZE_SC" \
     "$PYTHON_OPS" \
     "$WEIGHT_CONFIG" \
@@ -186,3 +199,10 @@ clingo "${CLINGO_FLAGS[@]}" "$num_models" \
     $INPUT \
     "$SEMESTER_INPUT" |
     python3 "$OUTPUT_PARSER" "$output_type"
+    
+    
+    
+    
+    
+    
+    

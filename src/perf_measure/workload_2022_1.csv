@@ -1,0 +1,65 @@
+Sigla,Nome,Grupo,Turma,Semestre,Horário Fixo,Professor,E-mail,Apelido
+MAC0422/MAC5753,Sistemas Operacionais,,,,2a 10:00 e 4a 14:00,Alan Mitchell Durham,durham@ime.usp.br,Alan
+MAC0213,Atividade Curricular em Comunidade,,,,Sab 08:00,Leliane Nunes de Barros,leliane@ime.usp.br,Leliane
+MAC0213,Atividade Curricular em Comunidade,,,,Sab 08:00,Flávio Soares Correa da Silva,fcs@ime.usp.br,Flavio
+MAC0214,Atividade Curricular em Cultura e Extensão,,,,Sab 14:00,Leliane Nunes de Barros,leliane@ime.usp.br,Leliane
+MAC0214,Atividade Curricular em Cultura e Extensão,,,,Sab 14:00,Flávio Soares Correa da Silva,fcs@ime.usp.br,Flavio
+MAC0215,Atividade Curricular em Pesquisa,,,,Sab 10:00,Leliane Nunes de Barros,leliane@ime.usp.br,Leliane
+MAC0215,Atividade Curricular em Pesquisa,,,,Sab 10:00,Flávio Soares Correa da Silva,fcs@ime.usp.br,Flavio
+MAC5711,Análise de Algoritmos,,,,4a 08:00 e 6a 10:00,Cristina Gomes Fernandes,cris@ime.usp.br,Cris
+MAC0337/MAC5900,Computação Musical,,,,3a 10:00 e 5a 08:00,Marcelo Gomes de Queiroz,mqz@ime.usp.br,Marcelinho
+MAC0352,Redes de Computadores e Sistemas Distribuídos,,,,3a 08:00 e 5a 10:00,Daniel Macêdo Batista,batista@ime.usp.br,Daniel
+MAC0420/MAC5744,Introdução à Computação Gráfica,,,,4a 10:00 e 6a 08:00,Carlos Hitoshi Morimoto,hitoshi@ime.usp.br,Hitoshi
+MAC6919,Teste de Software Baseado em Modelos,,,,2a 08:00 e 5a 10:00,Ana Cristina Vieira de Melo,acvm@ime.usp.br,Ana
+MAC0417/MAC5768,Visão Computacional e Processamento de Imagens,,,,3a 14:00 e 5a 10:00,Roberto Marcondes Cesar Junior,cesar@ime.usp.br,Marcondes
+MAC0327,Desafios de Programação I,,,,4a 14:00 e 6a 10:00,Jose Coelho de Pina Junior,coelho@ime.usp.br,Coelho
+MAC5710,Estrutura de Dados e sua Manipulação,,,,4a 10:00 e 6a 08:00,Guilherme Oliveira Mota,mota@ime.usp.br,Guilherme
+IBI5031,Reconhecimento de Padrões I,,,,3a 10:00 e 5a 10:00,Ronaldo Fumio Hashimoto,ronaldo@ime.usp.br,Ronaldo
+MAC6711,Tópicos de Análise de Algoritmos,,,,4a 08:00 e 6a 10:00,Marcel K. de Carli Silva,mksilva@ime.usp.br,Marcel K
+MAC0460/MAC5832,Introdução ao aprendizado de máquina,,,,2a 14:00 e 4a 16:00,Nina Sumiko Tomita Hirata,nina@ime.usp.br,Nina
+MAC0439,Laboratório de Bancos de Dados,,,,3a 10:00 e 6a 10:00,Kelly Rosa Braghetto,kellyrb@ime.usp.br,Kelly
+MAC0425/MAC5739,Inteligência Artificial,,,,3a 16:00 e 5a 14:00,Leliane Nunes de Barros,leliane@ime.usp.br,Leliane
+MAC0336/MAC5723,Criptografia para Segurança de Dados/Introdução à Criptologia,,,,3a 16:00 e 5a 14:00,Routo Terada,rt@ime.usp.br,Routo
+MAC0320,Introdução à Teoria do Grafos,,,,3a 14:00 e 5a 16:00,Yoshiko Wakabayashi,yoshiko@ime.usp.br,Yoshiko
+MAC0218,Técnicas de Programação II,,,,2a 14:00 e 4a 16:00,Alfredo Goldman Vel Lejbman,gold@ime.usp.br,Alfredo
+MAC0499,Trabalho de Formatura Supervisionado,,,,Sab 07:00-08:00,Nina Sumiko Tomita Hirata,nina@ime.usp.br,Nina
+MAC0427,Otimização Não Linear,54,,,2a 19:20 e 5a 21:10,Walter Figueiredo Mascarenhas,walterfm@ime.usp.br,Walter
+MAC0427,Otimização Não Linear,44,,,2a 16:00 e 5a 14:00,Walter Figueiredo Mascarenhas,walterfm@ime.usp.br,Walter
+MAC0350,Introdução ao Desenvolvimento de Sistemas de Software,,,,3a 10:00 e 6a 08:00,João Eduardo Ferreira,jef@ime.usp.br,Jef
+MAC0329,Álgebra Booleana e Aplicações,,,,3a 08:00 e 5a 10:00,Júnior Barrera,jb@ime.usp.br,Junior
+MAC0323,Algoritmos e Estruturas de Dados II,,,,3a 10:00 e 5a 10:00,Carlos Eduardo Ferreira,cef@ime.usp.br,Carlinhos
+MAC0321,Laboratório de Programação Orientada a Objetos,2,,,6a 08:20 e 6a 10:20,Fabio Kon,kon@ime.usp.br,Fabio
+MAC0321,Laboratório de Programação Orientada a Objetos,1,,,5a 08:20 e 5a 10:20,Fabio Kon,kon@ime.usp.br,Fabio
+MAC0219/MAC5742,Programação Concorrente e Paralela/Introdução à Computação Paralela e Distribuída,,,,2a 16:00 e 5a 16:00,Alfredo Goldman Vel Lejbman,gold@ime.usp.br,Alfredo
+MAC0210,Laboratório de Métodos Numéricos,,,,3a 08:00 e 5a 08:00,Ernesto Julián Goldberg Birgin,egbirgin@ime.usp.br,Ernesto
+MAC0209,Modelagem e Simulação,1,,,2a 14:00 e 2a 16:00,Roberto Marcondes Cesar Junior,cesar@ime.usp.br,Marcondes
+CCM0128,Computação II,1,,,3a 14:00 e 4a 16:00,Yoshiharu Kohayakawa,yoshi@ime.usp.br,Yoshiharu
+MAC2166,Introdução à Computação,1,,,3a 09:20 e 5a 13:10,Guilherme Oliveira Mota,mota@ime.usp.br,Guilherme
+MAC2166,Introdução à Computação,2,,,3a 07:30 e 5a 07:30,Carlos Eduardo Ferreira,cef@ime.usp.br,Carlinhos
+MAC2166,Introdução à Computação,3,,,3a 09:20 e 5a 09:20,Yoshiharu Kohayakawa,yoshi@ime.usp.br,Yoshiharu
+MAC2166,Introdução à Computação,4,,,2a 13:10 e 4a 13:10,Kelly Rosa Braghetto,kellyrb@ime.usp.br,Kelly
+MAC2166,Introdução à Computação,5,,,2a 15:00 e 4a 15:00,Kelly Rosa Braghetto,kellyrb@ime.usp.br,Kelly
+MAC2166,Introdução à Computação,6,,,4a 09:20 e 6a 07:30,Rafael Will M. de Araujo,rwill@ime.usp.br,Rafael Will
+MAC2166,Introdução à Computação,7,,,5a 07:30 e 6a 15:00,Paulo Miranda,pmiranda@ime.usp.br,Paulo Miranda
+MAC2166,Introdução à Computação,8,,,5a 09:20 e 6a 13:10,Paulo Miranda,pmiranda@ime.usp.br,Paulo Miranda
+MAC2166,Introdução à Computação,9,,,3a 07:30 e 6a 07:30,Marcelo Finger,mfinger@ime.usp.br,Finger
+MAC2166,Introdução à Computação,10,,,3a 09:20 e 6a 09:20,Marcelo Finger,mfinger@ime.usp.br,Finger
+MAC2166,Introdução à Computação,11,,,4a 15:00 e 6a 09:20,Alair Pereira do Lago,alair@ime.usp.br,Alair
+MAC2166,Introdução à Computação,12,,,4a 13:10 e 6a 07:30,Alair Pereira do Lago,alair@ime.usp.br,Alair
+MAC0115,Introdução à Computação para Ciências Exatas e Tecnologia,15,,,3a 16:00 e 5a 14:00,Sinai Robins,srobins@ime.usp.br,Sinai
+MAC0113,Introdução à Computação para Ciências Humanas,22,,,3a 21:20 e 5a 19:30,Roberto Hirata Jr.,hirata@ime.usp.br,Hirata
+MAC0113,Introdução à Computação para Ciências Humanas,21,,,3a 19:30 e 5a 21:20,Roberto Hirata Jr.,hirata@ime.usp.br,Hirata
+MAC0113,Introdução à Computação para Ciências Humanas,2,,,4a 09:20 e 6a 07:30,Flávio Soares Correa da Silva,fcs@ime.usp.br,Flavio
+MAC0113,Introdução à Computação para Ciências Humanas,1,,,4a 07:30 e 6a 09:20,Flávio Soares Correa da Silva,fcs@ime.usp.br,Flavio
+MAC0110,Introdução à Computação,41,,,3a 08:00 e 5a 10:00,Denis Deratani Maua,ddm@ime.usp.br,Denis
+MAC0110,Introdução à Computação,51,,,3a 08:00 e 5a 10:00,Renata Wassermann,renata@ime.usp.br,Renata
+MAC0110,Introdução à Computação,42,,,3a 10:00 e 6a 13:20,Jose Coelho de Pina Junior,coelho@ime.usp.br,Coelho
+MAC0110,Introdução à Computação,54,,,4a 21:10 e 6a 19:20,Manoel Marcílio Sanches,mms@ime.usp.br,Marcilio
+MAC0110,Introdução à Computação,,,,2a 08:00 e 4a 10:00,Nina Sumiko Tomita Hirata,nina@ime.usp.br,Nina
+MAC0105,Fundamentos de Matemática para a Computação,,,,4a 14:00 e 6a 08:00,Temporário,temp,Posdoc
+MAC0101,Integração na Universidade e na Profissão,,,,3a 13:00-14:40,Leliane Nunes de Barros,leliane@ime.usp.br,Leliane
+MAC0101,Integração na Universidade e na Profissão,,,,3a 13:00-14:40,Flávio Soares Correa da Silva,fcs@ime.usp.br,Flavio
+MAC0331/MAC5747,Geometria Computacional (Computacional Geometry),,,,2a 14:00 e 4a 16:00,Cristina Gomes Fernandes,cris@ime.usp.br,Cris
+MAC6958,Tópicos Avançados em Ciência de Dados para Redes de Computadores,,,,3a 10:00 e 5a 08:00,Daniel Macêdo Batista,batista@ime.usp.br,Daniel
+MAC6958,Tópicos Avançados em Ciência de Dados para Redes de Computadores,,,,3a 10:00 e 5a 08:00,Roberto Hirata Jr.,hirata@ime.usp.br,Hirata
+MAC6953,"Seminários em Combinatória Extremal, Probabilística e Aditiva I",,,,6a 16:00-18:00,Guilherme Oliveira Mota,mota@ime.usp.br,Guilherme

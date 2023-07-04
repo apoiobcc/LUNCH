@@ -1,7 +1,12 @@
 joint(mac0422,mac5753).
 joint(mac0115,ibi5011).
+joint(mac5783,mac0332).
 joint(ibi5013,mac5861).
+joint(mac5910,mac0352).
+joint(mac5788,mac0434).
+joint(ibi5013,mac5760).
 joint(mac0325,mac5781).
+joint(mac5718,mac0333).
 joint(mac0450,mac5727).
 joint(mac0427,mac5797).
 joint(mac0337,mac5900).
@@ -19,6 +24,7 @@ joint(mac0434,mac6923).
 joint(mac6967,mac6923).
 joint(mac0536,mac6928).
 joint(mac0436,mac5775).
+joint(mac0436,mac6962).
 joint(mac0775,mac5775).
 joint(mac0300,mac6920).
 joint(mac0300,map5904).
